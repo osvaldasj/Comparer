@@ -1,5 +1,7 @@
 ﻿using Google.Cloud.Vision.V1;
 
+
+
 namespace Comparer
 {
     public static class ImageRecognition

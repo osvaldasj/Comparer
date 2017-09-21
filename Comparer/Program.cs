@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Comparer
 {
@@ -30,6 +31,7 @@ namespace Comparer
         {
             TextWriter textWriter = new StreamWriter(filePath);
             textWriter.Write(text);
+            //MessageBox.Show(text);
             textWriter.Close();
         }
     }

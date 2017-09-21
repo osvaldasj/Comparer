@@ -5,6 +5,21 @@ namespace Comparer
 {
     static class Program
     {
+        // Solve dll problem
+        static Program()
+        {
+            var httpasm = typeof(System.Net.Http.HttpClient).Assembly;
+
+            AppDomain.CurrentDomain.AssemblyResolve += (s, a) =>
+            {
+                var requestedAssembly = new System.Reflection.AssemblyName(a.Name);
+                if (requestedAssembly.Name != "System.Net.Http")
+                    return null;
+
+                return httpasm;
+            };
+        }
+
         [STAThread]
         static void Main()
         {

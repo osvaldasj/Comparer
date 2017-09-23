@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Comparer
 {
@@ -24,7 +23,13 @@ namespace Comparer
         [STAThread]
         static void Main()
         {
-            ResultWriter(ImageRecognition.ExtractText(Navigator.SelectInputFile()), Navigator.SelectOutputFile());
+            string inputFile = Navigator.SelectInputFile();
+            string outputFile = Navigator.SelectOutputFile();
+            string text = ImageRecognition.ExtractText(inputFile);
+            var textManager = new TextManager();
+
+            text = textManager.PrepareText(text);
+            ResultWriter(text, outputFile);
         }
 
         public static void ResultWriter(string text, string filePath)

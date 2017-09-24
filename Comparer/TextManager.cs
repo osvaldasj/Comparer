@@ -37,6 +37,7 @@ namespace Comparer
             string result = "";
             string result2 = "";
 
+            // For now works only with maxima
             if (shopName == "maxima")
             {
                 // Delete everytihng up to word "kvitas"
@@ -53,10 +54,11 @@ namespace Comparer
                     text = text + "\n";
                 }
                 catch { }
-                // For older versions of maxima checks
+
                 try
                 {
-                    text = text.Remove(text.IndexOf("a=2") - 3);
+                    text = text.Remove(text.IndexOf("| a-21") - 3);
+                    text = text + "\n";
                 }
                 catch { }
 
@@ -102,18 +104,20 @@ namespace Comparer
             }
             return result2;
         }
+        // Extract date from string
         private string GetDate(string text)
         {
             var regex = new Regex(@"\b\d{4}\-\d{2}-\d{2}\b");
             foreach (Match m in regex.Matches(text))
             {
-                DateTime dt;
-                if (DateTime.TryParseExact(m.Value, "yyyy-MM-dd", null, DateTimeStyles.None, out dt))
-                    return dt.ToString().Remove(dt.ToString().Length - 12);
+                DateTime dateTime;
+                if (DateTime.TryParseExact(m.Value, "yyyy-MM-dd", null, DateTimeStyles.None, out dateTime))
+                    return dateTime.ToString().Remove(dateTime.ToString().Length - 12);
             }
             return "unable to detect date";
         }
 
+        // Remove one element from string
         private string RemoveAt(string text, int index)
         {
             return text.Remove(index, 1);
@@ -121,10 +125,19 @@ namespace Comparer
 
         public string PrepareText(string text)
         {
+            // Make all letters lowercase
             text = Standartise(text);
+
+            // Extract shop name from string
             _shopName = DetectShopName(text);
+
+            // Extract date from string
             _date = GetDate(text);
+
+            // Extract list of products acording to shop name
             _products = ExtractProducts(text, _shopName);
+
+            // Construct and return final result
             return _shopName + "\n" + _date + "\n" + _products;
         }
     }

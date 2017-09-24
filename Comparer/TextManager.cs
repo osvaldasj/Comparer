@@ -37,6 +37,7 @@ namespace Comparer
             string result = "";
             string result2 = "";
 
+            // For now works only with maxima
             if (shopName == "maxima")
             {
                 // Delete everytihng up to word "kvitas"

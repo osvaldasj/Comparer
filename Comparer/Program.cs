@@ -32,17 +32,6 @@ namespace Comparer
             Application.Run(new Main());
         }
 
-        /*public static void MainProgram()
-        {
-            string inputFile = Navigator.SelectInputFile();
-           string outputFile = Navigator.SelectOutputFile();
-           string text = ImageRecognition.ExtractText(inputFile);
-           var textManager = new TextManager();
-
-           text = textManager.PrepareText(text);
-           ResultWriter(text, outputFile);
-        }*/
-
 
         public static void ResultWriter(string text, string filePath)
         {

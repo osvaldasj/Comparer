@@ -1,7 +1,6 @@
 ﻿using Google.Cloud.Vision.V1;
 using System;
 using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Comparer
 {
@@ -14,7 +13,7 @@ namespace Comparer
             var client = ImageAnnotatorClient.Create();
 
             // Load the image file into memory
-            var image = Google.Cloud.Vision.V1.Image.FromFile(imageName);
+            var image = Image.FromFile(imageName);
 
             // Set language hint
             ImageContext imageContext = new ImageContext();

@@ -59,6 +59,12 @@ namespace Comparer
                     text = text.Remove(text.IndexOf("a=2") - 3);
                 }
                 catch { }
+                try
+                {
+                    text = text.Remove(text.IndexOf("| a-21") - 3);
+                    text = text + "\n";
+                }
+                catch { }
 
                 // Remove all "\n"
                 using (StringReader reader = new StringReader(text))

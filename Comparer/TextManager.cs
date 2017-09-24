@@ -46,7 +46,19 @@ namespace Comparer
                 text = text.Substring(text.IndexOf('\n') + 1);
 
                 // Delete everything after the last prouct
-                text = text.Remove(text.IndexOf("a=2") - 3);
+                // For 2017 versions of maxima checks
+                try
+                {
+                    text = text.Remove(text.IndexOf("pvm") - 3);
+                    text = text + "\n";
+                }
+                catch { }
+                // For older versions of maxima checks
+                try
+                {
+                    text = text.Remove(text.IndexOf("a=2") - 3);
+                }
+                catch { }
 
                 // Remove all "\n"
                 using (StringReader reader = new StringReader(text))
@@ -74,9 +86,13 @@ namespace Comparer
                         line = reader.ReadLine();
                         if (line != null)
                         {
-                            if (line[line.Length - 3] == ' ')
+                            // Remove whitespaces between numbers of prices   
+                            for (int i = 2; i < 5; i++)
                             {
-                                line = RemoveAt(line, line.Length - 3);
+                                if (line[line.Length - i] == ' ')
+                                {
+                                    line = RemoveAt(line, line.Length - i);
+                                }
                             }
                             result2 = result2 + line + "\n";
                         }

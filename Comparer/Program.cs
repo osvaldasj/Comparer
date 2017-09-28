@@ -1,10 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Comparer
 {
-    static class Program
+    public static class Program
     {
+
+        
         // Solve dll problem
         static Program()
         {
@@ -21,22 +24,18 @@ namespace Comparer
         }
 
         [STAThread]
-        static void Main()
+        public static void Main()
         {
-            string inputFile = Navigator.SelectInputFile();
-            string outputFile = Navigator.SelectOutputFile();
-            string text = ImageRecognition.ExtractText(inputFile);
-            var textManager = new TextManager();
-
-            text = textManager.PrepareText(text);
-            ResultWriter(text, outputFile);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Main());
         }
+
 
         public static void ResultWriter(string text, string filePath)
         {
             TextWriter textWriter = new StreamWriter(filePath);
             textWriter.Write(text);
-            //MessageBox.Show(text);
             textWriter.Close();
         }
     }

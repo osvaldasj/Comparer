@@ -40,6 +40,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.outputCheck = new System.Windows.Forms.CheckBox();
+            this.compareButton = new System.Windows.Forms.Button();
+            this.databaseButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.databaseCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,7 +130,7 @@
             // 
             this.imageCheck.AutoSize = true;
             this.imageCheck.Enabled = false;
-            this.imageCheck.Location = new System.Drawing.Point(105, 592);
+            this.imageCheck.Location = new System.Drawing.Point(105, 568);
             this.imageCheck.Name = "imageCheck";
             this.imageCheck.Size = new System.Drawing.Size(15, 14);
             this.imageCheck.TabIndex = 8;
@@ -136,7 +140,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 592);
+            this.label2.Location = new System.Drawing.Point(0, 568);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 9;
@@ -146,7 +150,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 617);
+            this.label3.Location = new System.Drawing.Point(0, 588);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 10;
@@ -156,17 +160,62 @@
             // 
             this.outputCheck.AutoSize = true;
             this.outputCheck.Enabled = false;
-            this.outputCheck.Location = new System.Drawing.Point(105, 617);
+            this.outputCheck.Location = new System.Drawing.Point(105, 588);
             this.outputCheck.Name = "outputCheck";
             this.outputCheck.Size = new System.Drawing.Size(15, 14);
             this.outputCheck.TabIndex = 11;
             this.outputCheck.UseVisualStyleBackColor = true;
+            // 
+            // compareButton
+            // 
+            this.compareButton.Enabled = false;
+            this.compareButton.Location = new System.Drawing.Point(12, 184);
+            this.compareButton.Name = "compareButton";
+            this.compareButton.Size = new System.Drawing.Size(110, 36);
+            this.compareButton.TabIndex = 12;
+            this.compareButton.Text = "Compare with Database";
+            this.compareButton.UseVisualStyleBackColor = true;
+            this.compareButton.Click += new System.EventHandler(this.compareButton_Click);
+            // 
+            // databaseButton
+            // 
+            this.databaseButton.Location = new System.Drawing.Point(12, 139);
+            this.databaseButton.Name = "databaseButton";
+            this.databaseButton.Size = new System.Drawing.Size(110, 39);
+            this.databaseButton.TabIndex = 13;
+            this.databaseButton.Text = "Select Database";
+            this.databaseButton.UseVisualStyleBackColor = true;
+            this.databaseButton.Click += new System.EventHandler(this.databaseButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(0, 612);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "DB Selected";
+            // 
+            // databaseCheck
+            // 
+            this.databaseCheck.AutoSize = true;
+            this.databaseCheck.Enabled = false;
+            this.databaseCheck.Location = new System.Drawing.Point(101, 611);
+            this.databaseCheck.Name = "databaseCheck";
+            this.databaseCheck.Size = new System.Drawing.Size(15, 14);
+            this.databaseCheck.TabIndex = 15;
+            this.databaseCheck.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.databaseCheck);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.databaseButton);
+            this.Controls.Add(this.compareButton);
             this.Controls.Add(this.outputCheck);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -202,5 +251,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox outputCheck;
+        private System.Windows.Forms.Button compareButton;
+        private System.Windows.Forms.Button databaseButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox databaseCheck;
     }
 }

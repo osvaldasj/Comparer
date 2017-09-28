@@ -14,8 +14,10 @@ namespace Comparer
     {
         public string inputFile;
         public string outputFile;
+        public string databaseFile;
         bool IMG = false;
         bool text = false;
+        bool DB = false;
         
         public Main()
         {
@@ -59,6 +61,8 @@ namespace Comparer
                 text = true;
                 if (IMG && text)
                     recognizeButton.Enabled = true;
+                if (DB && text)
+                    compareButton.Enabled = true;
                 outputCheck.Checked = true;
             }
         }
@@ -82,6 +86,28 @@ namespace Comparer
         {
             mainPictureBox.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
             mainPictureBox.Refresh();
+        }
+
+        private void compareButton_Click(object sender, EventArgs e)
+        {
+            AddToDatabase.CompareResults(outputFile, databaseFile);
+        }
+
+        private void databaseButton_Click(object sender, EventArgs e)
+        {
+            databaseFile = Navigator.SelectInputFile();
+            
+            if (outputFile == "-1")
+            {
+
+            }
+            else
+            {
+                DB = true;
+                if (DB && text)
+                    compareButton.Enabled = true;
+                databaseCheck.Checked = true;
+            }
         }
     }
 }

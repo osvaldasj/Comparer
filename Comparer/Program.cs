@@ -7,22 +7,6 @@ namespace Comparer
     public static class Program
     {
 
-        
-        // Solve dll problem
-        static Program()
-        {
-            var httpasm = typeof(System.Net.Http.HttpClient).Assembly;
-
-            AppDomain.CurrentDomain.AssemblyResolve += (s, a) =>
-            {
-                var requestedAssembly = new System.Reflection.AssemblyName(a.Name);
-                if (requestedAssembly.Name != "System.Net.Http")
-                    return null;
-
-                return httpasm;
-            };
-        }
-
         [STAThread]
         public static void Main()
         {
@@ -30,7 +14,6 @@ namespace Comparer
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
         }
-
 
         public static void ResultWriter(string text, string filePath)
         {

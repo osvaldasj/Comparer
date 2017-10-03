@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,8 @@ namespace Comparer
                 IMG = true;
                 if (IMG && text)
                     recognizeButton.Enabled = true;
+                if (IMG && text && DB)
+                    compareButton.Enabled = true;
                 imageCheck.Checked = true;
             }
             catch
@@ -61,7 +64,7 @@ namespace Comparer
                 text = true;
                 if (IMG && text)
                     recognizeButton.Enabled = true;
-                if (DB && text)
+                if (DB && text && IMG)
                     compareButton.Enabled = true;
                 outputCheck.Checked = true;
             }
@@ -74,6 +77,7 @@ namespace Comparer
             text = textManager.PrepareText(text);
             mainLabel.Text = text;
             Program.ResultWriter(text, outputFile);
+            Program.ResultWriter(text, Directory.GetCurrentDirectory() + "\\TempResult.txt")
         }
 
         private void rotateLeftButton_Click(object sender, EventArgs e)
@@ -90,7 +94,7 @@ namespace Comparer
 
         private void compareButton_Click(object sender, EventArgs e)
         {
-            AddToDatabase.CompareResults(outputFile, databaseFile);
+            CompareShops.CompareResults(outputFile, databaseFile);
         }
 
         private void databaseButton_Click(object sender, EventArgs e)
@@ -104,10 +108,16 @@ namespace Comparer
             else
             {
                 DB = true;
-                if (DB && text)
+                if (DB && text && IMG)
                     compareButton.Enabled = true;
                 databaseCheck.Checked = true;
             }
+        }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            
+            mainLabel.Text = CompareShops.ShowLists();
         }
     }
 }

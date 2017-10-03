@@ -51,9 +51,10 @@ namespace Comparer
                 try
                 {
                     text = text.Remove(text.IndexOf("pvm") - 3);
+                    text = text.Remove(text.IndexOf("pum") - 3);
                     text = text + "\n";
                 }
-                catch { }
+                catch{}
 
                 try
                 {

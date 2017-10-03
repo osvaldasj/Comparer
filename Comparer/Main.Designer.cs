@@ -44,6 +44,7 @@
             this.databaseButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.databaseCheck = new System.Windows.Forms.CheckBox();
+            this.testButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -207,11 +208,22 @@
             this.databaseCheck.TabIndex = 15;
             this.databaseCheck.UseVisualStyleBackColor = true;
             // 
+            // testButton
+            // 
+            this.testButton.Location = new System.Drawing.Point(12, 398);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(104, 33);
+            this.testButton.TabIndex = 16;
+            this.testButton.Text = "Test Button";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.testButton);
             this.Controls.Add(this.databaseCheck);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.databaseButton);
@@ -255,5 +267,6 @@
         private System.Windows.Forms.Button databaseButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox databaseCheck;
+        private System.Windows.Forms.Button testButton;
     }
 }

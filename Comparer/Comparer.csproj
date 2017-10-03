@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddToDatabase.cs" />
+    <Compile Include="FromFileToStruct.cs" />
+    <Compile Include="FromStructToFile.cs" />
     <Compile Include="ImageRecognition.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>

@@ -15,10 +15,8 @@ namespace Comparer
     {
         public string inputFile;
         public string outputFile;
-        public string databaseFile;
         bool IMG = false;
         bool text = false;
-        bool DB = false;
         
         public Main()
         {
@@ -36,9 +34,10 @@ namespace Comparer
                 mainPictureBox.Image = x;
                 IMG = true;
                 if (IMG && text)
+                {
                     recognizeButton.Enabled = true;
-                if (IMG && text && DB)
                     compareButton.Enabled = true;
+                }
                 imageCheck.Checked = true;
             }
             catch
@@ -63,9 +62,10 @@ namespace Comparer
             {
                 text = true;
                 if (IMG && text)
+                {
                     recognizeButton.Enabled = true;
-                if (DB && text && IMG)
                     compareButton.Enabled = true;
+                }
                 outputCheck.Checked = true;
             }
         }
@@ -77,7 +77,7 @@ namespace Comparer
             text = textManager.PrepareText(text);
             mainLabel.Text = text;
             Program.ResultWriter(text, outputFile);
-            Program.ResultWriter(text, Directory.GetCurrentDirectory() + "\\TempResult.txt")
+            Program.ResultWriter(text, Directory.GetCurrentDirectory() + "\\TempResult.txt");
         }
 
         private void rotateLeftButton_Click(object sender, EventArgs e)
@@ -94,30 +94,11 @@ namespace Comparer
 
         private void compareButton_Click(object sender, EventArgs e)
         {
-            CompareShops.CompareResults(outputFile, databaseFile);
-        }
-
-        private void databaseButton_Click(object sender, EventArgs e)
-        {
-            databaseFile = Navigator.SelectInputFile();
-            
-            if (outputFile == "-1")
-            {
-
-            }
+            float x = CompareShops.CompareResults();
+            if (x > 0)
+                moneySaved.Text = ("Jus permokejote: " + (x * -1).ToString() + " Eur.");
             else
-            {
-                DB = true;
-                if (DB && text && IMG)
-                    compareButton.Enabled = true;
-                databaseCheck.Checked = true;
-            }
-        }
-
-        private void testButton_Click(object sender, EventArgs e)
-        {
-            
-            mainLabel.Text = CompareShops.ShowLists();
+                moneySaved.Text = ("Jus sutaupete: " + (x*-1).ToString() + " Eur.");
         }
     }
 }

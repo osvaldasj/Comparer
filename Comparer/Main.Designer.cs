@@ -41,10 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.outputCheck = new System.Windows.Forms.CheckBox();
             this.compareButton = new System.Windows.Forms.Button();
-            this.databaseButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.databaseCheck = new System.Windows.Forms.CheckBox();
-            this.testButton = new System.Windows.Forms.Button();
+            this.moneySaved = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +79,7 @@
             this.mainLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainLabel.Location = new System.Drawing.Point(874, 1);
             this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(476, 692);
+            this.mainLabel.Size = new System.Drawing.Size(476, 372);
             this.mainLabel.TabIndex = 3;
             // 
             // recognizeButton
@@ -170,7 +167,7 @@
             // compareButton
             // 
             this.compareButton.Enabled = false;
-            this.compareButton.Location = new System.Drawing.Point(12, 184);
+            this.compareButton.Location = new System.Drawing.Point(12, 139);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(110, 36);
             this.compareButton.TabIndex = 12;
@@ -178,55 +175,21 @@
             this.compareButton.UseVisualStyleBackColor = true;
             this.compareButton.Click += new System.EventHandler(this.compareButton_Click);
             // 
-            // databaseButton
+            // moneySaved
             // 
-            this.databaseButton.Location = new System.Drawing.Point(12, 139);
-            this.databaseButton.Name = "databaseButton";
-            this.databaseButton.Size = new System.Drawing.Size(110, 39);
-            this.databaseButton.TabIndex = 13;
-            this.databaseButton.Text = "Select Database";
-            this.databaseButton.UseVisualStyleBackColor = true;
-            this.databaseButton.Click += new System.EventHandler(this.databaseButton_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 612);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "DB Selected";
-            // 
-            // databaseCheck
-            // 
-            this.databaseCheck.AutoSize = true;
-            this.databaseCheck.Enabled = false;
-            this.databaseCheck.Location = new System.Drawing.Point(101, 611);
-            this.databaseCheck.Name = "databaseCheck";
-            this.databaseCheck.Size = new System.Drawing.Size(15, 14);
-            this.databaseCheck.TabIndex = 15;
-            this.databaseCheck.UseVisualStyleBackColor = true;
-            // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(12, 398);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(104, 33);
-            this.testButton.TabIndex = 16;
-            this.testButton.Text = "Test Button";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            this.moneySaved.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.moneySaved.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.moneySaved.Location = new System.Drawing.Point(874, 416);
+            this.moneySaved.Name = "moneySaved";
+            this.moneySaved.Size = new System.Drawing.Size(476, 277);
+            this.moneySaved.TabIndex = 16;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
-            this.Controls.Add(this.testButton);
-            this.Controls.Add(this.databaseCheck);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.databaseButton);
+            this.Controls.Add(this.moneySaved);
             this.Controls.Add(this.compareButton);
             this.Controls.Add(this.outputCheck);
             this.Controls.Add(this.label3);
@@ -264,9 +227,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox outputCheck;
         private System.Windows.Forms.Button compareButton;
-        private System.Windows.Forms.Button databaseButton;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox databaseCheck;
-        private System.Windows.Forms.Button testButton;
+        private System.Windows.Forms.Label moneySaved;
     }
 }

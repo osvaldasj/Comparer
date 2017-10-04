@@ -10,7 +10,7 @@ namespace Comparer
 {
     public class CompareShops
     {
-        public static void CompareResults(string inputFile, string databaseFile)
+        public static float CompareResults()
         {
             //create rimi, maxima and currentCheck databases product lists from files
             List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
@@ -20,10 +20,12 @@ namespace Comparer
             rimi = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\RimiDatabase.txt");
             currentCheck = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\TempResult.txt");
 
-            int neededValue = 90;
+            int neededValue = 85;
             int currentValue;
+            float moneyDifference = 0;
+            int counter = 0;
 
-            if (currentCheck[0].name == "maxima")
+            if (currentCheck[0].shop == "maxima")
             {
                 for (int i = 0; i <= currentCheck.Count - 1; i++)
                 {
@@ -32,25 +34,52 @@ namespace Comparer
                         currentValue = Compare(currentCheck[i].name, rimi[j].name);
                         if (currentValue >= neededValue)
                         {
-
+                            moneyDifference += (currentCheck[i].price - rimi[j].price);
+                            MessageBox.Show(i.ToString() + " " + currentCheck[i].price.ToString() + "    "+ j.ToString()+" " + rimi[j].price.ToString());
                         }
                         else
                         {
-
+                            counter++;
                         }
                     }
+                    if (counter == currentCheck.Count)
+                    {
+                        //RequestForDatabase(currentCheck[i]);
+                        MessageBox.Show("unrecognized product");
+                    }
+                    counter = 0;
                 }
             }
-            else if (currentCheck[0].name == "rimi")
+            else if (currentCheck[0].shop == "rimi")
             {
-
+                for (int i = 0; i <= currentCheck.Count - 1; i++)
+                {
+                    for (int j = 0; j <= maxima.Count - 1; j++)
+                    {
+                        currentValue = Compare(currentCheck[i].name, maxima[j].name);
+                        if (currentValue >= neededValue)
+                        {
+                            moneyDifference += (currentCheck[i].price - maxima[j].price);
+                        }
+                        else
+                        {
+                            counter++;
+                        }
+                    }
+                    if (counter == currentCheck.Count)
+                    {
+                        //RequestForDatabase(currentCheck[i]);
+                        MessageBox.Show("unrecognized product");
+                    }
+                    counter = 0;
+                }
             }
             else
             {
-
+                MessageBox.Show("unrecognized shop");
             }
 
-
+            return moneyDifference;
         }
 
 
@@ -76,22 +105,6 @@ namespace Comparer
                     counter++;
             }
             return counter * 100 / lenMax;
-        }
-
-        public static string ShowLists()
-        {
-            List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
-            List<FromFileToStruct.Product> rimi = new List<FromFileToStruct.Product>();
-            maxima = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\MaximaDatabase.txt");
-            rimi = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\RimiDatabase.txt");
-
-            for (int i = 0; i <= maxima.Count - 1; i++)
-            {
-                //MessageBox.Show(maxima.Count.ToString());
-                MessageBox.Show(rimi[i].shop + "  " + rimi[i].date + " -> " + rimi[i].name + " for " + rimi[i].price);
-                //MessageBox.Show(maxima[i].shop + "  " + maxima[i].date + " -> " + maxima[i].name + " for " + maxima[i].price);
-            }
-            return (rimi[0].shop + "  " + rimi[0].date + " -> " + rimi[0].name + " for " + rimi[0].price);
         }
     }
 }

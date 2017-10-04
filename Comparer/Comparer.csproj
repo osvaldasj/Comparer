@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddToDatabase.cs" />
+    <Compile Include="CompareShops.cs" />
     <Compile Include="FromFileToStruct.cs" />
     <Compile Include="FromStructToFile.cs" />
     <Compile Include="ImageRecognition.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextManager.cs" />
+    <Compile Include="UpdateDatabase.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

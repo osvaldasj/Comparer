@@ -14,9 +14,7 @@ namespace Comparer
     public partial class Main : Form
     {
         public string inputFile;
-        public string outputFile;
         bool IMG = false;
-        bool text = false;
         
         public Main()
         {
@@ -33,7 +31,7 @@ namespace Comparer
                 x = resizeImage(x, new Size(740, 692));
                 mainPictureBox.Image = x;
                 IMG = true;
-                if (IMG && text)
+                if (IMG)
                 {
                     recognizeButton.Enabled = true;
                     compareButton.Enabled = true;
@@ -51,32 +49,12 @@ namespace Comparer
             return (Image)(new Bitmap(imgToResize, size));
         }
 
-        private void outButton_Click(object sender, EventArgs e)
-        {
-                outputFile = Navigator.SelectOutputFile();
-            if (outputFile == "-1")
-            {
-                
-            }
-            else
-            {
-                text = true;
-                if (IMG && text)
-                {
-                    recognizeButton.Enabled = true;
-                    compareButton.Enabled = true;
-                }
-                outputCheck.Checked = true;
-            }
-        }
-
         private void recognizeButton_Click(object sender, EventArgs e)
         {
             string text = ImageRecognition.ExtractText(inputFile);
             var textManager = new TextManager();
             text = textManager.PrepareText(text);
             mainLabel.Text = text;
-            Program.ResultWriter(text, outputFile);
             Program.ResultWriter(text, Directory.GetCurrentDirectory() + "\\TempResult.txt");
         }
 

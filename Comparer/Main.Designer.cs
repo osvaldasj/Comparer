@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.openButton = new System.Windows.Forms.Button();
-            this.outButton = new System.Windows.Forms.Button();
             this.mainPictureBox = new System.Windows.Forms.PictureBox();
             this.mainLabel = new System.Windows.Forms.Label();
             this.recognizeButton = new System.Windows.Forms.Button();
@@ -38,8 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.imageCheck = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.outputCheck = new System.Windows.Forms.CheckBox();
             this.compareButton = new System.Windows.Forms.Button();
             this.moneySaved = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
@@ -54,16 +51,6 @@
             this.openButton.Text = "Select Picture";
             this.openButton.UseVisualStyleBackColor = true;
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
-            // 
-            // outButton
-            // 
-            this.outButton.Location = new System.Drawing.Point(12, 54);
-            this.outButton.Name = "outButton";
-            this.outButton.Size = new System.Drawing.Size(110, 36);
-            this.outButton.TabIndex = 1;
-            this.outButton.Text = "Select Output";
-            this.outButton.UseVisualStyleBackColor = true;
-            this.outButton.Click += new System.EventHandler(this.outButton_Click);
             // 
             // mainPictureBox
             // 
@@ -85,7 +72,7 @@
             // recognizeButton
             // 
             this.recognizeButton.Enabled = false;
-            this.recognizeButton.Location = new System.Drawing.Point(12, 96);
+            this.recognizeButton.Location = new System.Drawing.Point(12, 54);
             this.recognizeButton.Name = "recognizeButton";
             this.recognizeButton.Size = new System.Drawing.Size(110, 37);
             this.recognizeButton.TabIndex = 4;
@@ -144,30 +131,10 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Image Selected";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 588);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Output Selected";
-            // 
-            // outputCheck
-            // 
-            this.outputCheck.AutoSize = true;
-            this.outputCheck.Enabled = false;
-            this.outputCheck.Location = new System.Drawing.Point(105, 588);
-            this.outputCheck.Name = "outputCheck";
-            this.outputCheck.Size = new System.Drawing.Size(15, 14);
-            this.outputCheck.TabIndex = 11;
-            this.outputCheck.UseVisualStyleBackColor = true;
-            // 
             // compareButton
             // 
             this.compareButton.Enabled = false;
-            this.compareButton.Location = new System.Drawing.Point(12, 139);
+            this.compareButton.Location = new System.Drawing.Point(12, 97);
             this.compareButton.Name = "compareButton";
             this.compareButton.Size = new System.Drawing.Size(110, 36);
             this.compareButton.TabIndex = 12;
@@ -191,8 +158,6 @@
             this.ClientSize = new System.Drawing.Size(1362, 696);
             this.Controls.Add(this.moneySaved);
             this.Controls.Add(this.compareButton);
-            this.Controls.Add(this.outputCheck);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.imageCheck);
             this.Controls.Add(this.label1);
@@ -201,7 +166,6 @@
             this.Controls.Add(this.recognizeButton);
             this.Controls.Add(this.mainLabel);
             this.Controls.Add(this.mainPictureBox);
-            this.Controls.Add(this.outButton);
             this.Controls.Add(this.openButton);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -215,7 +179,6 @@
         #endregion
 
         private System.Windows.Forms.Button openButton;
-        private System.Windows.Forms.Button outButton;
         private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.Label mainLabel;
         private System.Windows.Forms.Button recognizeButton;
@@ -224,8 +187,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox imageCheck;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox outputCheck;
         private System.Windows.Forms.Button compareButton;
         private System.Windows.Forms.Label moneySaved;
     }

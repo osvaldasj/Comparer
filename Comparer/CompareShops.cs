@@ -10,10 +10,9 @@ namespace Comparer
 {
     public class CompareShops
     {
+        //class which compares current check product list with one of the databases lists
         public static string CompareResults()
         {
-
-            
             //create rimi, maxima and currentCheck databases product lists from files
             List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
             List<FromFileToStruct.Product> rimi = new List<FromFileToStruct.Product>();
@@ -39,7 +38,6 @@ namespace Comparer
                         if (currentValue >= neededValue)
                         {
                             moneyDifference += (currentCheck[i].price - rimi[j].price);
-                            //MessageBox.Show(i.ToString() + " " + currentCheck[i].price.ToString() + "    "+ j.ToString()+" " + rimi[j].price.ToString());
                             AddForInfo(currentCheck[i].name, (currentCheck[i].price - rimi[j].price), infoFile);
                         }
                         else
@@ -49,7 +47,7 @@ namespace Comparer
                     }
                     if (counter == currentCheck.Count)
                     {
-                        //RequestForDatabase(currentCheck[i]);
+                        //RequestForDatabase(currentCheck[i]);  //to be made in the future
                         MessageBox.Show("unrecognized product");
                     }
                     counter = 0;
@@ -92,7 +90,7 @@ namespace Comparer
         }
 
 
-
+        //compares two strings how close they are the same and returns the value between 0 and 100 meaning %
         private static int Compare(string A, string B)
         {
             int counter = 0;

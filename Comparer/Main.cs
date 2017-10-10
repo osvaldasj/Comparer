@@ -94,11 +94,8 @@ namespace Comparer
 
         private void compareButton_Click(object sender, EventArgs e)
         {
-            float x = CompareShops.CompareResults();
-            if (x > 0)
-                moneySaved.Text = ("Jus permokejote: " + (x * -1).ToString() + " Eur.");
-            else
-                moneySaved.Text = ("Jus sutaupete: " + (x*-1).ToString() + " Eur.");
+            string infoFile = CompareShops.CompareResults();
+            moneySaved.Text = File.ReadAllText(infoFile);
         }
     }
 }

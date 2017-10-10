@@ -10,8 +10,10 @@ namespace Comparer
 {
     public class CompareShops
     {
-        public static float CompareResults()
+        public static string CompareResults()
         {
+
+            
             //create rimi, maxima and currentCheck databases product lists from files
             List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
             List<FromFileToStruct.Product> rimi = new List<FromFileToStruct.Product>();
@@ -24,9 +26,11 @@ namespace Comparer
             int currentValue;
             float moneyDifference = 0;
             int counter = 0;
+            string infoFile;
 
             if (currentCheck[0].shop == "maxima")
             {
+                infoFile = createInfoFile(1);
                 for (int i = 0; i <= currentCheck.Count - 1; i++)
                 {
                     for (int j = 0; j <= rimi.Count - 1; j++)
@@ -35,7 +39,8 @@ namespace Comparer
                         if (currentValue >= neededValue)
                         {
                             moneyDifference += (currentCheck[i].price - rimi[j].price);
-                            MessageBox.Show(i.ToString() + " " + currentCheck[i].price.ToString() + "    "+ j.ToString()+" " + rimi[j].price.ToString());
+                            //MessageBox.Show(i.ToString() + " " + currentCheck[i].price.ToString() + "    "+ j.ToString()+" " + rimi[j].price.ToString());
+                            AddForInfo(currentCheck[i].name, (currentCheck[i].price - rimi[j].price), infoFile);
                         }
                         else
                         {
@@ -52,6 +57,7 @@ namespace Comparer
             }
             else if (currentCheck[0].shop == "rimi")
             {
+                infoFile = createInfoFile(2);
                 for (int i = 0; i <= currentCheck.Count - 1; i++)
                 {
                     for (int j = 0; j <= maxima.Count - 1; j++)
@@ -76,15 +82,18 @@ namespace Comparer
             }
             else
             {
+                infoFile = "";
                 MessageBox.Show("unrecognized shop");
             }
 
-            return moneyDifference;
+            AddPriceComparisonForInfo(moneyDifference,  infoFile);
+
+            return infoFile;
         }
 
 
 
-        public static int Compare(string A, string B)
+        private static int Compare(string A, string B)
         {
             int counter = 0;
             int lenA = A.Length, lenB = B.Length;
@@ -104,7 +113,38 @@ namespace Comparer
                 if (A[i] == B[i])
                     counter++;
             }
-            return counter * 100 / lenMax;
+            if (lenMax != 0)
+                return counter * 100 / lenMax;
+            else
+                return 0;
+        }
+        
+        private static string createInfoFile(int shop)// 1 for maxima, 2 for rimi
+        {
+            string infoFile = Directory.GetCurrentDirectory() + "\\InfoToBeShown.txt";
+            if(shop == 1)
+                System.IO.File.WriteAllText(infoFile, "Pirkdamas maximoje jus sutaupete: \n");
+            else
+                System.IO.File.WriteAllText(infoFile, "Pirkdamas rimi jus sutaupete: \n");
+            return infoFile;
+        }
+
+        private static void AddForInfo(string name, float price, string infoFile)
+        {
+            price = float.Parse(String.Format("{0:0.00}", price));
+            if (price>=0)
+                System.IO.File.AppendAllText(infoFile, "Pirkdami \"" + name + "\" jus PERMOKEJOTE: " + price + " Eur\n");
+            else
+                System.IO.File.AppendAllText(infoFile, "Pirkdami \"" + name + "\" jus SUTAUPETE: " + -price + " Eur\n");
+        }
+
+        private static void AddPriceComparisonForInfo(float price, string infoFile)
+        {
+            price = float.Parse(String.Format("{0:0.00}", price));
+            if (price >= 0)
+                System.IO.File.AppendAllText(infoFile, "Is viso PERMOKEJOTE: " + price + " Eur");
+            else
+                System.IO.File.AppendAllText(infoFile, "Is viso SUTAUPETE: " + -price + " Eur");
         }
     }
 }

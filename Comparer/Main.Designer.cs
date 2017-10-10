@@ -79,7 +79,7 @@
             this.mainLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainLabel.Location = new System.Drawing.Point(874, 1);
             this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(476, 372);
+            this.mainLabel.Size = new System.Drawing.Size(476, 267);
             this.mainLabel.TabIndex = 3;
             // 
             // recognizeButton
@@ -179,9 +179,9 @@
             // 
             this.moneySaved.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.moneySaved.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.moneySaved.Location = new System.Drawing.Point(874, 416);
+            this.moneySaved.Location = new System.Drawing.Point(874, 311);
             this.moneySaved.Name = "moneySaved";
-            this.moneySaved.Size = new System.Drawing.Size(476, 277);
+            this.moneySaved.Size = new System.Drawing.Size(476, 382);
             this.moneySaved.TabIndex = 16;
             // 
             // Main

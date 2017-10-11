@@ -22,7 +22,6 @@ namespace Comparer
         public static List<Product> MakeProductList(string path)
         {
             List<Product> list = new List<Product>();
-            MessageBox.Show(path);
             string[] text = System.IO.File.ReadAllLines(path);
             int index = 0;
             //takes shop name and date of the check from file and keeps them in a constant string

@@ -13,13 +13,16 @@ namespace UnitTestsForComparer
         public void UnitTestCompareShopsCompareResultsMethod()
         {
             string infoFilePath;
-            infoFilePath = Directory.GetCurrentDirectory();
-
-
             infoFilePath = Comparer.CompareShops.CompareResults();
-            MessageBox.Show(infoFilePath);
-            var regex = new Regex(@"^[a-zA-Z]{1}l:\[a-zA-Z0-9]+$");
-            Assert.IsTrue(1==1);
+            ResultWriter(infoFilePath, Directory.GetCurrentDirectory() + "\\TempResult.txt");
+            var regex = new Regex("^[a-zA-Z0-9]:(\\[a-zA-Z0-9]+)+.txt$");
+            Assert.IsFalse(regex.IsMatch(infoFilePath));
+        }
+        public static void ResultWriter(string text, string filePath)
+        {
+            TextWriter textWriter = new StreamWriter(filePath);
+            textWriter.Write(text);
+            textWriter.Close();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Comparer
@@ -51,10 +52,16 @@ namespace Comparer
                 try
                 {
                     text = text.Remove(text.IndexOf("pvm") - 3);
-                    text = text.Remove(text.IndexOf("pum") - 3);
                     text = text + "\n";
                 }
                 catch{}
+
+                try
+                {
+                    text = text.Remove(text.IndexOf("pum") - 3);
+                    text = text + "\n";
+                }
+                catch { }
 
                 try
                 {

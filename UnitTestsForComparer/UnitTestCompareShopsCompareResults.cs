@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace UnitTestsForComparer
 {
@@ -10,12 +12,10 @@ namespace UnitTestsForComparer
         [TestMethod]
         public void UnitTestCompareShopsCompareResultsMethod()
         {
-            float expectedBottom = -1000f;
-            float expectedTop = 1000f;
-            float actual = 0;
-            //float actual = Comparer.CompareShops.CompareResults();
-            MessageBox.Show(actual.ToString());
-            Assert.IsTrue(actual >= expectedBottom && actual <= expectedTop);
+            string infoFilePath;
+            infoFilePath = Comparer.CompareShops.CompareResults();
+            var regex = new Regex("^[a-zA-Z0-9]:(\\[a-zA-Z0-9]+)+.txt$");
+            Assert.IsFalse(regex.IsMatch(infoFilePath));
         }
     }
 }

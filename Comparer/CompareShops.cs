@@ -10,6 +10,7 @@ namespace Comparer
 {
     public class CompareShops
     {
+        private static string currentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug"); //Directory.GetCurrentDirectory();
         //class which compares current check product list with one of the databases lists
         public static string CompareResults()
         {
@@ -17,9 +18,9 @@ namespace Comparer
             List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
             List<FromFileToStruct.Product> rimi = new List<FromFileToStruct.Product>();
             List<FromFileToStruct.Product> currentCheck = new List<FromFileToStruct.Product>();
-            maxima = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\MaximaDatabase.txt");
-            rimi = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\RimiDatabase.txt");
-            currentCheck = FromFileToStruct.MakeProductList(Directory.GetCurrentDirectory() + "\\TempResult.txt");
+            maxima = FromFileToStruct.MakeProductList(currentDirectory + "\\MaximaDatabase.txt");
+            rimi = FromFileToStruct.MakeProductList(currentDirectory + "\\RimiDatabase.txt");
+            currentCheck = FromFileToStruct.MakeProductList(currentDirectory + "\\TempResult.txt");
 
             int neededValue = 85;
             int currentValue;
@@ -91,7 +92,7 @@ namespace Comparer
 
 
         //compares two strings how close they are the same and returns the value between 0 and 100 meaning %
-        private static int Compare(string A, string B)
+        public static int Compare(string A, string B)
         {
             int counter = 0;
             int lenA = A.Length, lenB = B.Length;

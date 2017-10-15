@@ -7,7 +7,6 @@ namespace Comparer
 {
     public class TextManager
     {
-        private string _shopName;
         private string _date;
         private string _products;
 
@@ -67,8 +66,6 @@ namespace Comparer
             string result = "";
             string result2 = "";
 
-            // For now works only with maxima
-
             // Delete everytihng up to word "kvitas"
             text = text.Substring(text.IndexOf("kvitas"));
 
@@ -76,7 +73,6 @@ namespace Comparer
             text = text.Substring(text.IndexOf('\n') + 1);
 
             // Delete everything after the last prouct
-            // For 2017 versions of maxima checks
             try
             {
                 text = text.Remove(text.IndexOf("pvm") - 3);
@@ -165,16 +161,16 @@ namespace Comparer
             text = Standartise(text);
 
             // Extract shop name from string
-            _shopName = DetectShopName(text);
+            var shopName = DetectShopName(text);
 
             // Extract date from string
             _date = GetDate(text);
 
             // Extract list of products acording to shop name
-            _products = ExtractProducts(text, _shopName);
+            _products = GetProducts(text, (_shop)shopName);
 
             // Construct and return final result
-            return _shopName + "\n" + _date + "\n" + _products;
+            return shopName.ToString() + "\n" + _date + "\n" + _products;
         }
     }
 }

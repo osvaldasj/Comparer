@@ -29,15 +29,15 @@ namespace Comparer
         {
             if (text.Contains("maxima"))
             {
-                return _shop.Maxima;
+                return _shop.maxima;
             }
             else if (text.Contains("rimi"))
             {
-                return _shop.Maxima;
+                return _shop.maxima;
             }
             else
             {
-                return _shop.Unrecunrecognized;
+                return _shop.unrecunrecognized;
             }
         }
 
@@ -45,11 +45,11 @@ namespace Comparer
         {
             switch (shopName)
             {
-                case _shop.Maxima:
+                case _shop.maxima:
                     return GetProductsMaxima(text);
-                case _shop.Rimi:
+                case _shop.rimi:
                     return GetProductsRimi(text);
-                case _shop.Unrecunrecognized:
+                case _shop.unrecunrecognized:
                 default:
                     return "Unrecunrecognized shop";
 

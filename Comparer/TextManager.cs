@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Comparer
@@ -95,18 +96,11 @@ namespace Comparer
             catch { }
 
             // Remove all "\n"
-            using (StringReader reader = new StringReader(text))
-            {
-                string line = string.Empty;
-                do
-                {
-                    line = reader.ReadLine();
-                    if (line != null)
-                    {
-                        result = result + line + " ";
-                    }
-                } while (line != null);
-            }
+            var lines = text.Split('\n')
+            .Where(line => !string.IsNullOrWhiteSpace(line));
+
+            result = string.Join(" ", lines);
+            result = result + " ";
 
             // Delete letters after prices and move every product to new line
             result = result.Replace(" a ", "\n");

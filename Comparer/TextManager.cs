@@ -13,9 +13,9 @@ namespace Comparer
         [Flags]
         private enum _shop : short
         {
-            Unrecunrecognized,
-            Maxima,
-            Rimi,
+            unrecunrecognized,
+            maxima,
+            rimi,
         }
 
         // Make all letters to lowercase

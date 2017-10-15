@@ -53,7 +53,6 @@ namespace Comparer
                 case _shop.unrecunrecognized:
                 default:
                     return "Unrecunrecognized shop";
-
             }
         }
 
@@ -144,9 +143,9 @@ namespace Comparer
         }
 
         // Remove one element from string
-        private string RemoveAt(string text, int index)
+        private string RemoveAt(string text, int index, int amount = 1)
         {
-            return text.Remove(index, 1);
+            return text.Remove(index, amount);
         }
 
         public string PrepareText(string text)
@@ -161,7 +160,7 @@ namespace Comparer
             _date = GetDate(text);
 
             // Extract list of products acording to shop name
-            _products = GetProducts(text, (_shop)shopName);
+            _products = GetProducts(shopName: (_shop)shopName, text: text);
 
             // Construct and return final result
             return shopName.ToString() + "\n" + _date + "\n" + _products;

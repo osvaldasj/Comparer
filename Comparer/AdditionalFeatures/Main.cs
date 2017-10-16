@@ -72,7 +72,8 @@ namespace Comparer
 
         private void compareButton_Click(object sender, EventArgs e)
         {
-            string infoFile = CompareShops.CompareResults();
+            var shopEngine = new CompareShops();
+            string infoFile = shopEngine.CompareResults();
             moneySaved.Text = File.ReadAllText(infoFile);
         }
     }

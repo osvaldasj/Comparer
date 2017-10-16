@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,11 @@ using System.Windows.Forms;
 
 namespace Comparer
 {
-    public class CompareShops
+    public class CompareShops : IComparer
     {
         private static string currentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug"); //Directory.GetCurrentDirectory();
         //class which compares current check product list with one of the databases lists
-        public static string CompareResults()
+        public string CompareResults()
         {
             //create rimi, maxima and currentCheck databases product lists from files
             List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
@@ -89,13 +90,42 @@ namespace Comparer
 
             return infoFile;
         }
+        
+        private static string createInfoFile(int shop)// 1 for maxima, 2 for rimi
+        {
+            string infoFile = Directory.GetCurrentDirectory() + "\\InfoToBeShown.txt";
+            if(shop == 1)
+                System.IO.File.WriteAllText(infoFile, "Pirkdami Maximoje jus: \n");
+            else
+                System.IO.File.WriteAllText(infoFile, "Pirkdami Rimi jus: \n");
+            return infoFile;
+        }
 
+        private static void AddForInfo(string name, float price, string infoFile)
+        {
+            price = float.Parse(String.Format("{0:0.00}", price));
+            if (price>=0)
+                System.IO.File.AppendAllText(infoFile, "Pirkdami \"" + name + "\" jus PERMOKEJOTE: " + price + " Eur\n");
+            else
+                System.IO.File.AppendAllText(infoFile, "Pirkdami \"" + name + "\" jus SUTAUPETE: " + -price + " Eur\n");
+        }
+
+        private static void AddPriceComparisonForInfo(float price, string infoFile)
+        {
+            price = float.Parse(String.Format("{0:0.00}", price));
+            if (price >= 0)
+                System.IO.File.AppendAllText(infoFile, "Is viso PERMOKEJOTE: " + price + " Eur");
+            else
+                System.IO.File.AppendAllText(infoFile, "Is viso SUTAUPETE: " + -price + " Eur");
+        }
 
         //compares two strings how close they are the same and returns the value between 0 and 100 meaning %
-        public static int Compare(string A, string B)
+        public int Compare(object x, object y)
         {
             int counter = 0;
-            int lenA = A.Length, lenB = B.Length;
+            string A = (string)x;
+            string B = (string)y;
+            int lenA = A.Length, lenB = B.Length; ;
             int lenMin, lenMax;
             if (lenA > lenB)
             {
@@ -116,34 +146,6 @@ namespace Comparer
                 return counter * 100 / lenMax;
             else
                 return 0;
-        }
-        
-        private static string createInfoFile(int shop)// 1 for maxima, 2 for rimi
-        {
-            string infoFile = Directory.GetCurrentDirectory() + "\\InfoToBeShown.txt";
-            if(shop == 1)
-                System.IO.File.WriteAllText(infoFile, "Pirkdamas maximoje jus sutaupete: \n");
-            else
-                System.IO.File.WriteAllText(infoFile, "Pirkdamas rimi jus sutaupete: \n");
-            return infoFile;
-        }
-
-        private static void AddForInfo(string name, float price, string infoFile)
-        {
-            price = float.Parse(String.Format("{0:0.00}", price));
-            if (price>=0)
-                System.IO.File.AppendAllText(infoFile, "Pirkdami \"" + name + "\" jus PERMOKEJOTE: " + price + " Eur\n");
-            else
-                System.IO.File.AppendAllText(infoFile, "Pirkdami \"" + name + "\" jus SUTAUPETE: " + -price + " Eur\n");
-        }
-
-        private static void AddPriceComparisonForInfo(float price, string infoFile)
-        {
-            price = float.Parse(String.Format("{0:0.00}", price));
-            if (price >= 0)
-                System.IO.File.AppendAllText(infoFile, "Is viso PERMOKEJOTE: " + price + " Eur");
-            else
-                System.IO.File.AppendAllText(infoFile, "Is viso SUTAUPETE: " + -price + " Eur");
         }
     }
 }

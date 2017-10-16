@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using Comparer;
 
 namespace UnitTestsForComparer
 {
@@ -12,7 +13,8 @@ namespace UnitTestsForComparer
         {
             int expectedBottom = 0;
             int expectedTop = 100;
-            int actual = Comparer.CompareShops.Compare("abc", "def");
+            var x = new CompareShops();
+            int actual = x.Compare("abc", "def");
             Assert.IsTrue(actual >= expectedBottom && actual <= expectedTop);
         }
 

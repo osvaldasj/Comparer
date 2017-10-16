@@ -49,8 +49,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTestCompareShopsCompareResults.cs" />
-    <Compile Include="UnitTestCompareShopsCompare.cs" />
+    <Compile Include="UnitTestCompareEngine\UnitTestCompareShopsCompareResults.cs" />
+    <Compile Include="UnitTestCompareEngine\UnitTestCompareShopsCompare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +61,10 @@
       <Project>{4a261ab7-b354-4ad9-99e7-484b6bd759d7}</Project>
       <Name>Comparer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnitTestOtherFeatures\" />
+    <Folder Include="UnitTestTextRecognition\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

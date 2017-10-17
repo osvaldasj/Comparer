@@ -42,6 +42,7 @@ namespace Comparer
             }
         }
 
+        // Use correct method depending on shop name
         private string GetProducts(string text, _shop shopName)
         {
             switch (shopName)

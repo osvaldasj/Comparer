@@ -8,108 +8,126 @@ namespace Comparer
 {
     public class TextManager
     {
-        private string _shopName;
         private string _date;
         private string _products;
 
+        [Flags]
+        private enum _shop : short
+        {
+            unrecunrecognized,
+            maxima,
+            rimi,
+        }
+
+        // Make all letters to lowercase
         private string Standartise(string text)
         {
             return text.ToLower();
         }
 
-        private string DetectShopName(string text)
+        // Scan string and fetch name of the shop
+        private Enum DetectShopName(string text)
         {
             if (text.Contains("maxima"))
             {
-                return "maxima";
+                return _shop.maxima;
             }
             else if (text.Contains("rimi"))
             {
-                return "rimi";
+                return _shop.maxima;
             }
             else
             {
-                return "unrecognized";
+                return _shop.unrecunrecognized;
             }
         }
 
-        private string ExtractProducts(string text, string shopName)
+        // Use correct method depending on shop name
+        private string GetProducts(string text, _shop shopName)
+        {
+            switch (shopName)
+            {
+                case _shop.maxima:
+                    return GetProductsMaxima(text);
+                case _shop.rimi:
+                    return GetProductsRimi(text);
+                case _shop.unrecunrecognized:
+                default:
+                    return "Unrecunrecognized shop";
+            }
+        }
+
+        private string GetProductsRimi(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        private string GetProductsMaxima(string text)
         {
             string result = "";
             string result2 = "";
 
-            // For now works only with maxima
-            if (shopName == "maxima")
+            // Delete everytihng up to word "kvitas"
+            text = text.Substring(text.IndexOf("kvitas"));
+
+            // Delete everything up to first product
+            text = text.Substring(text.IndexOf('\n') + 1);
+
+            // Delete everything after the last prouct
+            try
             {
-                // Delete everytihng up to word "kvitas"
-                text = text.Substring(text.IndexOf("kvitas"));
-
-                // Delete everything up to first product
-                text = text.Substring(text.IndexOf('\n') + 1);
-
-                // Delete everything after the last prouct
-                // For 2017 versions of maxima checks
-                try
-                {
-                    text = text.Remove(text.IndexOf("pvm") - 3);
-                    text = text + "\n";
-                }
-                catch{}
-
-                try
-                {
-                    text = text.Remove(text.IndexOf("pum") - 3);
-                    text = text + "\n";
-                }
-                catch { }
-
-                try
-                {
-                    text = text.Remove(text.IndexOf("| a-21") - 3);
-                    text = text + "\n";
-                }
-                catch { }
-
-                // Remove all "\n"
-                using (StringReader reader = new StringReader(text))
-                {
-                    string line = string.Empty;
-                    do
-                    {
-                        line = reader.ReadLine();
-                        if (line != null)
-                        {
-                            result = result + line + " ";
-                        }
-                    } while (line != null);
-                }
-
-                // Delete letters after prices and move every product to new line
-                result = result.Replace(" a ", "\n");
-                result = result.Replace(" c ", "\n");
-
-                using (StringReader reader = new StringReader(result))
-                {
-                    string line = string.Empty;
-                    do
-                    {
-                        line = reader.ReadLine();
-                        if (line != null)
-                        {
-                            // Remove whitespaces between numbers of prices   
-                            for (int i = 2; i < 5; i++)
-                            {
-                                if (line[line.Length - i] == ' ')
-                                {
-                                    line = RemoveAt(line, line.Length - i);
-                                }
-                            }
-                            result2 = result2 + line + "\n";
-                        }
-                    } while (line != null);
-                }
-                result2 = result2.Remove(result2.LastIndexOf("\n") - 1);
+                text = text.Remove(text.IndexOf("pvm") - 3);
+                text = text + "\n";
             }
+            catch { }
+
+            try
+            {
+                text = text.Remove(text.IndexOf("pum") - 3);
+                text = text + "\n";
+            }
+            catch { }
+
+            try
+            {
+                text = text.Remove(text.IndexOf("| a-21") - 3);
+                text = text + "\n";
+            }
+            catch { }
+
+            // Remove all "\n"
+            var lines = text.Split('\n')
+            .Where(line => !string.IsNullOrWhiteSpace(line));
+
+            result = string.Join(" ", lines);
+            result = result + " ";
+
+            // Delete letters after prices and move every product to new line
+            result = result.Replace(" a ", "\n");
+            result = result.Replace(" c ", "\n");
+
+            using (StringReader reader = new StringReader(result))
+            {
+                string line = string.Empty;
+                do
+                {
+                    line = reader.ReadLine();
+                    if (line != null)
+                    {
+                        // Remove whitespaces between numbers of prices   
+                        for (int i = 2; i < 5; i++)
+                        {
+                            if (line[line.Length - i] == ' ')
+                            {
+                                line = RemoveAt(line, line.Length - i);
+                            }
+                        }
+                        result2 = result2 + line + "\n";
+                    }
+                } while (line != null);
+            }
+            result2 = result2.Remove(result2.LastIndexOf("\n") - 1);
+
             return result2;
         }
         // Extract date from string
@@ -126,9 +144,9 @@ namespace Comparer
         }
 
         // Remove one element from string
-        private string RemoveAt(string text, int index)
+        private string RemoveAt(string text, int index, int amount = 1)
         {
-            return text.Remove(index, 1);
+            return text.Remove(index, amount);
         }
 
         public string PrepareText(string text)
@@ -137,16 +155,16 @@ namespace Comparer
             text = Standartise(text);
 
             // Extract shop name from string
-            _shopName = DetectShopName(text);
+            var shopName = DetectShopName(text);
 
             // Extract date from string
             _date = GetDate(text);
 
             // Extract list of products acording to shop name
-            _products = ExtractProducts(text, _shopName);
+            _products = GetProducts(shopName: (_shop)shopName, text: text);
 
             // Construct and return final result
-            return _shopName + "\n" + _date + "\n" + _products;
+            return shopName.ToString() + "\n" + _date + "\n" + _products;
         }
     }
 }

@@ -16,6 +16,14 @@ namespace Comparer
             public float price;
             public string shop;
             public string date;
+
+            public Product(string n, float p, string sn, string d)
+            {
+                name = n;
+                price = p;
+                shop = sn;
+                date = d;
+            }
         }
 
         //class which created a List from a given file path
@@ -33,9 +41,6 @@ namespace Comparer
             {
                 while (text[index] != null)
                 {
-                    Product temp;
-                    temp.shop = shopName;
-                    temp.date = checkDate;
                     int x = 1;
                     float tPrice = 0;
                     float dec = 0.01f;
@@ -50,10 +55,9 @@ namespace Comparer
                         x++;
                     }
                     //adds name until the space which was found making a float
-                    temp.name = text[index].Substring(0, text[index].Length - x);
-                    tPrice = float.Parse(String.Format("{0:0.00}", tPrice));
-                    temp.price = tPrice;
+                    tPrice = formatFloat(tPrice);
                     index++;
+                    Product temp = new Product(text[index].Substring(0, text[index].Length - x), tPrice, shopName, checkDate);
                     //adds product to current list
                     list.Add(temp);
                 }
@@ -61,6 +65,12 @@ namespace Comparer
             catch { }
             
             return list;
+        }
+
+        public static float formatFloat(float x)
+        {
+            x = float.Parse(String.Format("{0:0.00}", x));
+            return x;
         }
     }
 }

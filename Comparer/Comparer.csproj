@@ -89,9 +89,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareEngine\IWritable.cs" />
+    <Compile Include="CompareEngine\WriteToFile.cs" />
     <Compile Include="DatabaseEngine\AddToDatabase.cs" />
     <Compile Include="CompareEngine\CompareShops.cs" />
-    <Compile Include="CompareEngine\CompareTwoStrings.cs" />
     <Compile Include="DatabaseEngine\FromFileToStruct.cs" />
     <Compile Include="DatabaseEngine\FromStructToFile.cs" />
     <Compile Include="TextRecognition\ImageRecognition.cs" />

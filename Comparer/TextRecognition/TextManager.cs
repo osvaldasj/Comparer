@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Comparer.TextRecognition;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -17,12 +18,6 @@ namespace Comparer
             unrecunrecognized,
             maxima,
             rimi,
-        }
-
-        // Make all letters to lowercase
-        private string Standartise(string text)
-        {
-            return text.ToLower();
         }
 
         // Scan string and fetch name of the shop
@@ -57,6 +52,7 @@ namespace Comparer
             }
         }
 
+        // For future expansion
         private string GetProductsRimi(string text)
         {
             throw new NotImplementedException();
@@ -122,7 +118,8 @@ namespace Comparer
                                 line = RemoveAt(line, line.Length - i);
                             }
                         }
-                        result2 = result2 + line + "\n";
+                        result2 = result2 + line;
+                        result2 = result.AddNewLine();
                     }
                 } while (line != null);
             }
@@ -152,7 +149,7 @@ namespace Comparer
         public string PrepareText(string text)
         {
             // Make all letters lowercase
-            text = Standartise(text);
+            text = text.Standartise();
 
             // Extract shop name from string
             var shopName = DetectShopName(text);

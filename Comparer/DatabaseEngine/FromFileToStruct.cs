@@ -16,6 +16,14 @@ namespace Comparer
             public float price;
             public string shop;
             public string date;
+
+            public Product(string n, float p, string sn, string d)
+            {
+                name = n;
+                price = p;
+                shop = sn;
+                date = d;
+            }
         }
 
         //class which created a List from a given file path
@@ -33,9 +41,6 @@ namespace Comparer
             {
                 while (text[index] != null)
                 {
-                    Product temp;
-                    temp.shop = shopName;
-                    temp.date = checkDate;
                     int x = 1;
                     float tPrice = 0;
                     float dec = 0.01f;
@@ -50,9 +55,8 @@ namespace Comparer
                         x++;
                     }
                     //adds name until the space which was found making a float
-                    temp.name = text[index].Substring(0, text[index].Length - x);
-                    tPrice = float.Parse(String.Format("{0:0.00}", tPrice));
-                    temp.price = tPrice;
+                    tPrice = formatFloat(tPrice);
+                    Product temp = new Product(text[index].Substring(0, text[index].Length - x), tPrice, shopName, checkDate);
                     index++;
                     //adds product to current list
                     list.Add(temp);
@@ -61,6 +65,47 @@ namespace Comparer
             catch { }
             
             return list;
+        }
+
+        public static List<Product> MakeProductList2(string path)
+        {
+            List<Product> list = new List<Product>();
+            string[] text = System.IO.File.ReadAllLines(path);
+            int index = 0;
+            try
+            {
+                while (text[index] != null)
+                {
+                    int space1 = text[index].IndexOf(' ');
+                    int space2 = text[index].IndexOf(' ', space1 + 1);
+                    int idx = text[index].LastIndexOf(' ') + 1;
+
+
+                    string strPrice = text[index].Substring(idx, text[index].Length - idx);
+                    string[] StrRemake = strPrice.Split(',');
+                    strPrice = StrRemake[0] + '.' + StrRemake[1];
+
+                    float price = float.Parse(strPrice);
+
+                    string name = text[index].Substring(space2 + 1, idx - space2 - 2);
+                    string shop = text[index].Substring(0, space1);
+                    string date = text[index].Substring(space1 + 1, space2-space1-1);
+
+                    //MessageBox.Show("shop: " + text[index].Substring(0, space1) + " date: "+ text[index].Substring(space1+1, 10)+ " Product: " + text[index].Substring(space2+1, idx - space2-2) + " wtih a price of " + price);
+                    Product temp = new Product(name, price, shop, date);
+                    list.Add(temp);
+                    index++;
+                }
+            }
+            catch { }
+
+            return list;
+        }
+
+        public static float formatFloat(float x)
+        {
+            x = float.Parse(String.Format("{0:0.00}", x));
+            return x;
         }
     }
 }

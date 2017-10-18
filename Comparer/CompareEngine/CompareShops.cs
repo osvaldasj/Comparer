@@ -17,13 +17,14 @@ namespace Comparer
         //class which compares current check product list with one of the databases lists
         public string CompareResults()
         {
-            //create rimi, maxima and currentCheck databases product lists from files
-            List<FromFileToStruct.Product> maxima = new List<FromFileToStruct.Product>();
-            List<FromFileToStruct.Product> rimi = new List<FromFileToStruct.Product>();
             List<FromFileToStruct.Product> currentCheck = new List<FromFileToStruct.Product>();
-            maxima = FromFileToStruct.MakeProductList(currentDirectory + "\\MaximaDatabase.txt");
-            rimi = FromFileToStruct.MakeProductList(currentDirectory + "\\RimiDatabase.txt");
             currentCheck = FromFileToStruct.MakeProductList(currentDirectory + "\\TempResult.txt");
+
+            List<FromFileToStruct.Product> fullDatabase = new List<FromFileToStruct.Product>();
+            fullDatabase = FromFileToStruct.MakeProductList2(currentDirectory + "\\FullDatabase.txt");
+
+            var maxima = from x in fullDatabase where x.shop == "maxima" select x;
+            var rimi = from x in fullDatabase where x.shop == "rimi" select x;            
 
             WriteToFile write = new WriteToFile();
             float moneyDifference = 0;
@@ -50,22 +51,22 @@ namespace Comparer
             return infoFile;
         }
 
-        public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, List<FromFileToStruct.Product> otherShop, WriteToFile write, string infoFile)
+        public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write, string infoFile)
         {
             int neededValue = 85;
             int currentValue;
             float moneyDifference = 0;
             int counter = 0;
-
+       
             for (int i = 0; i <= currentCheck.Count - 1; i++)
             {
-                for (int j = 0; j <= otherShop.Count - 1; j++)
+                foreach(FromFileToStruct.Product otherShop in otherShopList)
                 {
-                    currentValue = Compare(currentCheck[i].name, otherShop[j].name);
+                    currentValue = Compare(currentCheck[i].name, otherShop.name);
                     if (currentValue >= neededValue)
                     {
-                        moneyDifference += (currentCheck[i].price - otherShop[j].price);
-                        write.Write(currentCheck[i].name, infoFile, (currentCheck[i].price - otherShop[j].price));
+                        moneyDifference += (currentCheck[i].price - otherShop.price);
+                        write.Write(currentCheck[i].name, infoFile, (currentCheck[i].price - otherShop.price));
                     }
                     else
                     {

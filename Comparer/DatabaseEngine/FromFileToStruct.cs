@@ -67,6 +67,41 @@ namespace Comparer
             return list;
         }
 
+        public static List<Product> MakeProductList2(string path)
+        {
+            List<Product> list = new List<Product>();
+            string[] text = System.IO.File.ReadAllLines(path);
+            int index = 0;
+            try
+            {
+                while (text[index] != null)
+                {
+                    int space1 = text[index].IndexOf(' ');
+                    int space2 = text[index].IndexOf(' ', space1 + 1);
+                    int idx = text[index].LastIndexOf(' ') + 1;
+
+
+                    string strPrice = text[index].Substring(idx, text[index].Length - idx);
+                    string[] StrRemake = strPrice.Split(',');
+                    strPrice = StrRemake[0] + '.' + StrRemake[1];
+
+                    float price = float.Parse(strPrice);
+
+                    string name = text[index].Substring(space2 + 1, idx - space2 - 2);
+                    string shop = text[index].Substring(0, space1);
+                    string date = text[index].Substring(space1 + 1, space2-space1-1);
+
+                    //MessageBox.Show("shop: " + text[index].Substring(0, space1) + " date: "+ text[index].Substring(space1+1, 10)+ " Product: " + text[index].Substring(space2+1, idx - space2-2) + " wtih a price of " + price);
+                    Product temp = new Product(name, price, shop, date);
+                    list.Add(temp);
+                    index++;
+                }
+            }
+            catch { }
+
+            return list;
+        }
+
         public static float formatFloat(float x)
         {
             x = float.Parse(String.Format("{0:0.00}", x));

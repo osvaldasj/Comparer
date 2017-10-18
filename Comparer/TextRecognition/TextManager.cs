@@ -9,11 +9,58 @@ namespace Comparer
 {
     public class TextManager
     {
+        string text = "MA" +
+            "HAX IMA LT, UAB" +
+            "Savanoriu pr. 247, Vilnius, Kasa Nr. 13" +
+            "PUM moketojo kodas LT230335113" +
+            "Kvitas 1 / 15 #00000908" +
+            "Liesa Varške OPTIMA LINIJA, 0,5 % rieb. 0,45 A" +
+            " Grikiu kruopos OPTIMA LINIJA(4 x 100 g) 0,79 A" +
+            "Grietine FARM MILK, 30 % rieb 0,73 A" +
+            " Pienas OPTIMA LINIJA, 3,5 % 0,59 A" +
+            "  Saulegražu aliejus OPTIMA LINIJA 1,27 A" +
+            "  Kiaušiniai OPTIMA LINIJA(MI, rudi) 0,99 A" +
+            " Pirkiniu maišelis 25mk MAXIMA(30 / 7x50 cm) 0,08 A" +
+            "  | A - 21,008" +
+            "PUM" +
+            "0,85" +
+            "Be PUM" +
+            "4,05" +
+            "Su PUM" +
+            "4,90" +
+            "Moketi" +
+            "Moketa(Banko kortele)" +
+            "4,90" +
+            "4,90" +
+            "MOKEJIMAS KORTELE" +
+            "PARDAVIMAS" +
+            "DOKUMENTO NR 005656:170323 143457" +
+            "I KVITO NR 100596" +
+            "TERMINAL ID 03189910" +
+            "MERCHANT ID 0032181110" +
+            "LAIKAS 2017 - 03 - 23 14:34:57" +
+            "Debit MasterCard ********XXXXX4376" +
+            "A0000000041010 TVR : 0000008000" +
+            "TSI: E800 AIP:3900 TC: 146CD888D4C6DBE5" +
+            "  DEBIT MASTERCARD" +
+            "  SUMA 4, 90 EUR" +
+            "  Autorizacijos Nr 242896 T: 1" +
+            "PIN KODAS TEISINGAS" +
+            "IŠSAUGOKITE CEKIO KOPIJA SASKAITOS" +
+            "IšRAŠ0 PATIKRINIMUI" +
+            "RRN: 708266988518" +
+            ":" +
+            "InvÑr: 1300 - 0130 - 0150 - 0014" +
+            "ACIU, KAD PIRKOTE!" +
+            "* Daugiau informacijos sužinokite" +
+            "WWW.Maxima.lt ir telefonu 8 800 20050" +
+            "Kasininkas(-é) 10457 13" +
+            "LF JB 0000004A91D6 2017 - 03 - 23 14:35:09";
         private string _date;
         private string _products;
 
         [Flags]
-        private enum _shop : short
+        private enum Shop : short
         {
             unrecunrecognized,
             maxima,
@@ -25,108 +72,49 @@ namespace Comparer
         {
             if (text.Contains("maxima"))
             {
-                return _shop.maxima;
+                return Shop.maxima;
             }
             else if (text.Contains("rimi"))
             {
-                return _shop.maxima;
+                return Shop.maxima;
             }
             else
             {
-                return _shop.unrecunrecognized;
+                return Shop.unrecunrecognized;
             }
         }
 
-        // Use correct method depending on shop name
-        private string GetProducts(string text, _shop shopName)
-        {
-            switch (shopName)
-            {
-                case _shop.maxima:
-                    return GetProductsMaxima(text);
-                case _shop.rimi:
-                    return GetProductsRimi(text);
-                case _shop.unrecunrecognized:
-                default:
-                    return "Unrecunrecognized shop";
-            }
-        }
-
-        // For future expansion
-        private string GetProductsRimi(string text)
-        {
-            throw new NotImplementedException();
-        }
-
-        private string GetProductsMaxima(string text)
+        // Extract products using regex
+        private string GetProducts(string text)
         {
             string result = "";
-            string result2 = "";
+            var regex = new Regex(@"((([a-z]){2,}[ ]?)+\n+\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))|(\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))");
+            var matches = regex.Matches(text);
 
-            // Delete everytihng up to word "kvitas"
-            text = text.Substring(text.IndexOf("kvitas"));
-
-            // Delete everything up to first product
-            text = text.Substring(text.IndexOf('\n') + 1);
-
-            // Delete everything after the last prouct
-            try
+            foreach (var match in matches)
             {
-                text = text.Remove(text.IndexOf("pvm") - 3);
-                text = text + "\n";
-            }
-            catch { }
 
-            try
+                result = result + match + "\n";
+            }
+
+            result = result.Replace(" a\n", "\n");
+            result = result.Replace(" c\n", "\n");
+            if (result.EndsWith("\n"))
             {
-                text = text.Remove(text.IndexOf("pum") - 3);
-                text = text + "\n";
+                result = RemoveAt(result, result.Length - 1);
             }
-            catch { }
+            result = result.RemoveSpacesBetweenNumbers();
 
-            try
+            if (result != "")
             {
-                text = text.Remove(text.IndexOf("| a-21") - 3);
-                text = text + "\n";
+                return result;
             }
-            catch { }
-
-            // Remove all "\n"
-            var lines = text.Split('\n')
-            .Where(line => !string.IsNullOrWhiteSpace(line));
-
-            result = string.Join(" ", lines);
-            result = result + " ";
-
-            // Delete letters after prices and move every product to new line
-            result = result.Replace(" a ", "\n");
-            result = result.Replace(" c ", "\n");
-
-            using (StringReader reader = new StringReader(result))
+            else
             {
-                string line = string.Empty;
-                do
-                {
-                    line = reader.ReadLine();
-                    if (line != null)
-                    {
-                        // Remove whitespaces between numbers of prices   
-                        for (int i = 2; i < 5; i++)
-                        {
-                            if (line[line.Length - i] == ' ')
-                            {
-                                line = RemoveAt(line, line.Length - i);
-                            }
-                        }
-                        result2 = result2 + line;
-                        result2 = result.AddNewLine();
-                    }
-                } while (line != null);
+                return "unable to detect products";
             }
-            result2 = result2.Remove(result2.LastIndexOf("\n") - 1);
-
-            return result2;
         }
+
         // Extract date from string
         private string GetDate(string text)
         {
@@ -158,7 +146,7 @@ namespace Comparer
             _date = GetDate(text);
 
             // Extract list of products acording to shop name
-            _products = GetProducts(shopName: (_shop)shopName, text: text);
+            _products = GetProducts(text: text);
 
             // Construct and return final result
             return shopName.ToString() + "\n" + _date + "\n" + _products;

@@ -13,7 +13,7 @@ namespace Comparer
         private string _products;
 
         [Flags]
-        private enum _shop : short
+        private enum Shop : short
         {
             unrecunrecognized,
             maxima,
@@ -25,108 +25,48 @@ namespace Comparer
         {
             if (text.Contains("maxima"))
             {
-                return _shop.maxima;
+                return Shop.maxima;
             }
             else if (text.Contains("rimi"))
             {
-                return _shop.maxima;
+                return Shop.maxima;
             }
             else
             {
-                return _shop.unrecunrecognized;
+                return Shop.unrecunrecognized;
             }
         }
 
-        // Use correct method depending on shop name
-        private string GetProducts(string text, _shop shopName)
-        {
-            switch (shopName)
-            {
-                case _shop.maxima:
-                    return GetProductsMaxima(text);
-                case _shop.rimi:
-                    return GetProductsRimi(text);
-                case _shop.unrecunrecognized:
-                default:
-                    return "Unrecunrecognized shop";
-            }
-        }
-
-        // For future expansion
-        private string GetProductsRimi(string text)
-        {
-            throw new NotImplementedException();
-        }
-
-        private string GetProductsMaxima(string text)
+        // Extract products using regex
+        private string GetProducts(string text)
         {
             string result = "";
-            string result2 = "";
+            var regex = new Regex(@"((([a-z]){2,}[ ]?)+\n+\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))|(\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))");
+            var matches = regex.Matches(text);
 
-            // Delete everytihng up to word "kvitas"
-            text = text.Substring(text.IndexOf("kvitas"));
-
-            // Delete everything up to first product
-            text = text.Substring(text.IndexOf('\n') + 1);
-
-            // Delete everything after the last prouct
-            try
+            foreach (var match in matches)
             {
-                text = text.Remove(text.IndexOf("pvm") - 3);
-                text = text + "\n";
-            }
-            catch { }
 
-            try
+                result = result + match + "\n";
+            }
+
+            result = result.Replace(" a\n", "\n");
+            result = result.Replace(" c\n", "\n");
+            if (result.EndsWith("\n"))
             {
-                text = text.Remove(text.IndexOf("pum") - 3);
-                text = text + "\n";
+                result = RemoveAt(result, result.Length - 1);
             }
-            catch { }
 
-            try
+            if (result != "")
             {
-                text = text.Remove(text.IndexOf("| a-21") - 3);
-                text = text + "\n";
+                return result;
             }
-            catch { }
-
-            // Remove all "\n"
-            var lines = text.Split('\n')
-            .Where(line => !string.IsNullOrWhiteSpace(line));
-
-            result = string.Join(" ", lines);
-            result = result + " ";
-
-            // Delete letters after prices and move every product to new line
-            result = result.Replace(" a ", "\n");
-            result = result.Replace(" c ", "\n");
-
-            using (StringReader reader = new StringReader(result))
+            else
             {
-                string line = string.Empty;
-                do
-                {
-                    line = reader.ReadLine();
-                    if (line != null)
-                    {
-                        // Remove whitespaces between numbers of prices   
-                        for (int i = 2; i < 5; i++)
-                        {
-                            if (line[line.Length - i] == ' ')
-                            {
-                                line = RemoveAt(line, line.Length - i);
-                            }
-                        }
-                        result2 = result2 + line;
-                        result2 = result.AddNewLine();
-                    }
-                } while (line != null);
+                return "unable to detect products";
             }
-            result2 = result2.Remove(result2.LastIndexOf("\n") - 1);
-
-            return result2;
         }
+
         // Extract date from string
         private string GetDate(string text)
         {
@@ -158,7 +98,7 @@ namespace Comparer
             _date = GetDate(text);
 
             // Extract list of products acording to shop name
-            _products = GetProducts(shopName: (_shop)shopName, text: text);
+            _products = GetProducts(text: text);
 
             // Construct and return final result
             return shopName.ToString() + "\n" + _date + "\n" + _products;

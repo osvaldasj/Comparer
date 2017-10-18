@@ -4,14 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestsForComparer
 {
-    /// <summary>
-    /// Summary description for UnitTestTextManagerPrepareText
-    /// </summary>
     [TestClass]
     public class UnitTestTextManagerPrepare
     {
+        // Contains shop name
         [TestMethod]
-        public void UnitTestTextManagerPrepareText()
+        public void UnitTestTextManagerPrepareTextContainShopName()
         {
             TextManager textManager = new TextManager();
             string text = "MA" +
@@ -62,8 +60,17 @@ namespace UnitTestsForComparer
             "Kasininkas(-é) 10457 13" +
             "LF JB 0000004A91D6 2017 - 03 - 23 14:35:09";
             text = textManager.PrepareText(text);
-            Assert.IsTrue(text.Contains(" "));
+            Assert.IsTrue(text.Contains("maxima"));
+        }
+
+        // Contains information about not found parameters
+        [TestMethod]
+        public void UnitTestTextManagerPrepareTextNotEmpty()
+        {
+            TextManager textManager = new TextManager();
+            string text = "";
+            text = textManager.PrepareText(text);
+            Assert.IsTrue(text.Length != 0);
         }
     }
-
 }

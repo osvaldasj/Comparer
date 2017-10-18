@@ -23,5 +23,14 @@ namespace Comparer.TextRecognition
             return str;
         }
 
+        // Remove spaces between numbers
+        public static string RemoveSpacesBetweenNumbers(this String str)
+        {
+            str = Regex.Replace(str, @"\d[ ]\d", @"\d\d");
+            str = Regex.Replace(str, @"\d[ ][,]\d", @"\d\d");
+            str = Regex.Replace(str, @"\d[,][ ]\d", @"\d\d");
+            return str;
+        }
+
     }
 }

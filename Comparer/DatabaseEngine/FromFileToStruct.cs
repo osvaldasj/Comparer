@@ -56,8 +56,8 @@ namespace Comparer
                     }
                     //adds name until the space which was found making a float
                     tPrice = formatFloat(tPrice);
-                    index++;
                     Product temp = new Product(text[index].Substring(0, text[index].Length - x), tPrice, shopName, checkDate);
+                    index++;
                     //adds product to current list
                     list.Add(temp);
                 }

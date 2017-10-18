@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Comparer.TextRecognition
 {
@@ -10,10 +11,17 @@ namespace Comparer.TextRecognition
             return str + "\n";
         }
 
-        // Make all letters to lowercase
+        // Make all letters to lowercase and leave only one whitespace between
         public static string Standartise(this String str)
         {
-            return str.ToLower();
+            str = str.ToLower();
+
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex("[ ]{2,}", options);
+            str = regex.Replace(str, " ");
+
+            return str;
         }
+
     }
 }

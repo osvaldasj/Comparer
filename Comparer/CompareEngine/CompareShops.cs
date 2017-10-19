@@ -12,19 +12,25 @@ namespace Comparer
 {
     public class CompareShops : IComparer
     {
-
         private string infoFile;
         public string infofile
         {
-            get { return infofile; }
-            set { infofile = value; }
+            get { return infoFile; }
+            set { infoFile = value; }
         }
 
         //get path to database directory
-        private static string currentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug"); //Directory.GetCurrentDirectory();
+        private string currentDirectory;// = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug");
+        public string CurrentDirectory
+        {
+            get { return currentDirectory; }
+            set { currentDirectory = value; }
+        }
         //class which compares current check product list with one of the databases lists
         public string CompareResults()
         {
+
+            CurrentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug");
             List<FromFileToStruct.Product> currentCheck = new List<FromFileToStruct.Product>();
             currentCheck = FromFileToStruct.MakeProductList(currentDirectory + "\\TempResult.txt");
 
@@ -40,26 +46,26 @@ namespace Comparer
 
             if (currentCheck[0].shop == "maxima")
             {
-                infoFile = write.Write(currentDirectory, 1);
-                moneyDifference = EvaluateTwoChecks(currentCheck, rimi, write);
+                infofile = write.Write(currentDirectory, 1);
+                moneyDifference = EvaluateTwoChecks(currentCheck, rimi, write, infofile);
             }
             else if (currentCheck[0].shop == "rimi")
             {
-                infoFile = write.Write(currentDirectory, 2);
-                moneyDifference = EvaluateTwoChecks(currentCheck, maxima, write);
+                infofile = write.Write(currentDirectory, 2);
+                moneyDifference = EvaluateTwoChecks(currentCheck, maxima, write, infofile);
             }
             else
             {
-                infoFile = "";
+                infofile = "";
                 MessageBox.Show("unrecognized shop");
             }
 
-            write.Write(infoFile, moneyDifference);
+            write.Write(infofile, moneyDifference);
 
-            return infoFile;
+            return infofile;
         }
 
-        public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write)
+        public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write, string info)
         {
             int neededValue = 85;
             int currentValue;
@@ -74,7 +80,7 @@ namespace Comparer
                     if (currentValue >= neededValue)
                     {
                         moneyDifference += (currentCheck[i].price - otherShop.price);
-                        write.Write(currentCheck[i].name, infoFile, (currentCheck[i].price - otherShop.price));
+                        write.Write(currentCheck[i].name, info, (currentCheck[i].price - otherShop.price));
                     }
                     else
                     {

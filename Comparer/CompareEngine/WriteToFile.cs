@@ -30,7 +30,7 @@ namespace Comparer.CompareEngine
 
         public void Write<T>(T infoFile, float price)
         {
-            //price = float.Parse(String.Format("{0:0.00}", price));
+            price = float.Parse(String.Format("{0:0.00}", price));
             if (price >= 0)
                 System.IO.File.AppendAllText(infoFile.ToString(), "Is viso PERMOKEJOTE: " + price + " Eur");
             else

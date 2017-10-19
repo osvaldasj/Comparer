@@ -28,7 +28,7 @@ namespace UnitTestsForComparer.UnitTestCompareEngine
             float expectedMin = -1000;
             float expectedMax = 1000;
             Comparer.CompareShops x = new Comparer.CompareShops();
-            float actual = x.EvaluateTwoChecks(currentCheck, maxima, write , infoFile);
+            float actual = x.EvaluateTwoChecks(currentCheck, maxima, write);
             Assert.IsTrue(actual >= expectedMin && actual <= expectedMax);
         }
     }

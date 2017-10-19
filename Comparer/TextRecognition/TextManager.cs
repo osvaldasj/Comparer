@@ -46,12 +46,12 @@ namespace Comparer
 
             foreach (var match in matches)
             {
-
                 result = result + match + "\n";
             }
 
             result = result.Replace(" a\n", "\n");
             result = result.Replace(" c\n", "\n");
+
             if (result.EndsWith("\n"))
             {
                 result = RemoveAt(result, result.Length - 1);

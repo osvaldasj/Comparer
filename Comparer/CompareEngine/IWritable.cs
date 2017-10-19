@@ -9,7 +9,7 @@ namespace Comparer.CompareEngine
     public interface IWritable
     {
         string Write(string x, int a);
-        void Write(string x, float a);
+        void Write<T>(T x, float a);
         void Write(string x, string y, float a);
     }
 }

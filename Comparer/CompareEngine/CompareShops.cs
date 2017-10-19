@@ -12,6 +12,14 @@ namespace Comparer
 {
     public class CompareShops : IComparer
     {
+
+        private string infoFile;
+        public string infofile
+        {
+            get { return infofile; }
+            set { infofile = value; }
+        }
+
         //get path to database directory
         private static string currentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug"); //Directory.GetCurrentDirectory();
         //class which compares current check product list with one of the databases lists
@@ -28,17 +36,17 @@ namespace Comparer
 
             WriteToFile write = new WriteToFile();
             float moneyDifference = 0;
-            string infoFile;
+
 
             if (currentCheck[0].shop == "maxima")
             {
                 infoFile = write.Write(currentDirectory, 1);
-                moneyDifference = EvaluateTwoChecks(currentCheck, rimi, write, infoFile);
+                moneyDifference = EvaluateTwoChecks(currentCheck, rimi, write);
             }
             else if (currentCheck[0].shop == "rimi")
             {
                 infoFile = write.Write(currentDirectory, 2);
-                moneyDifference = EvaluateTwoChecks(currentCheck, maxima, write, infoFile);
+                moneyDifference = EvaluateTwoChecks(currentCheck, maxima, write);
             }
             else
             {
@@ -51,7 +59,7 @@ namespace Comparer
             return infoFile;
         }
 
-        public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write, string infoFile)
+        public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write)
         {
             int neededValue = 85;
             int currentValue;

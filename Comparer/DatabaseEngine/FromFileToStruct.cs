@@ -70,7 +70,9 @@ namespace Comparer
         public static List<Product> MakeProductList2(string path)
         {
             List<Product> list = new List<Product>();
-            string[] text = System.IO.File.ReadAllLines(path);
+            //string[] text = System.IO.File.ReadAllLines(path);
+            ComparerWebService.WebServiceSoapClient client = new ComparerWebService.WebServiceSoapClient();
+            string[] text = client.ProductList().Split('$');
             int index = 0;
             try
             {
@@ -82,8 +84,8 @@ namespace Comparer
 
 
                     string strPrice = text[index].Substring(idx, text[index].Length - idx);
-                    string[] StrRemake = strPrice.Split(',');
-                    strPrice = StrRemake[0] + '.' + StrRemake[1];
+                    //string[] StrRemake = strPrice.Split(',');
+                    //strPrice = StrRemake[0] + '.' + StrRemake[1];
 
                     float price = float.Parse(strPrice);
 

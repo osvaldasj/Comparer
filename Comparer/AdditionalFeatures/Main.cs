@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,6 +43,9 @@ namespace Comparer
             {
 
             }
+            //something to execute from web service
+            //ComparerWebService.WebServiceSoapClient client = new ComparerWebService.WebServiceSoapClient();
+            //MessageBox.Show(client.HelloWorld());
         }
 
         public static Image resizeImage(Image imgToResize, Size size)
@@ -75,6 +79,13 @@ namespace Comparer
             var shopEngine = new CompareShops();
             string infoFile = shopEngine.CompareResults();
             moneySaved.Text = File.ReadAllText(infoFile);
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            ComparerWebService.WebServiceSoapClient client = new ComparerWebService.WebServiceSoapClient();
+            string asqw = client.ProductList();
+            moneySaved.Text = asqw;
         }
     }
 }

@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.compareButton = new System.Windows.Forms.Button();
             this.moneySaved = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,11 +152,22 @@
             this.moneySaved.Size = new System.Drawing.Size(476, 382);
             this.moneySaved.TabIndex = 16;
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(3, 249);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(117, 33);
+            this.btnTest.TabIndex = 17;
+            this.btnTest.Text = "Test Button";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.moneySaved);
             this.Controls.Add(this.compareButton);
             this.Controls.Add(this.label2);
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button compareButton;
         private System.Windows.Forms.Label moneySaved;
+        private System.Windows.Forms.Button btnTest;
     }
 }

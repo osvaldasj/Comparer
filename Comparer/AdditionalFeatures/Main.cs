@@ -5,9 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Specialized;
+using Comparer.AdditionalFeatures;
 
 namespace Comparer
 {
@@ -42,6 +46,9 @@ namespace Comparer
             {
 
             }
+            //something to execute from web service
+            //ComparerWebService.WebServiceSoapClient client = new ComparerWebService.WebServiceSoapClient();
+            //MessageBox.Show(client.HelloWorld());
         }
 
         public static Image resizeImage(Image imgToResize, Size size)
@@ -75,6 +82,57 @@ namespace Comparer
             var shopEngine = new CompareShops();
             string infoFile = shopEngine.CompareResults();
             moneySaved.Text = File.ReadAllText(infoFile);
+        }
+        private static readonly HttpClient client = new HttpClient();
+
+
+        private async Task btnTest_ClickAsync(object sender, EventArgs e)
+        {
+            string url = @"http://192.168.0.200/TestComparer/api/mytest/computemulti";
+
+            /*using (var wb = new WebClient())
+            {
+                var response = wb.DownloadString(url);
+                moneySaved.Text = response.ToString();
+            }*/
+
+            /*var values = new Dictionary<string, string>
+            {
+                  { "thing1", "hello" },
+                  { "thing2", "world" }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+            
+
+            var response = await client.PostAsync(url, content);
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            */
+
+
+
+            using (var client = new HttpClient())
+            {
+
+                var content = new FormUrlEncodedContent(new[]
+                {
+                new KeyValuePair<string, string>("", "String to Pass")
+            });
+                var result = await client.PostAsync(url, content);
+                string resultContent = await result.Content.ReadAsStringAsync();
+                moneySaved.Text = resultContent;
+            }
+
+
+
+            //moneySaved.Text = responseString;
+            
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            btnTest_ClickAsync(sender, e);
         }
     }
 }

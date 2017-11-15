@@ -10,9 +10,12 @@ namespace Comparer
 {
     public static class AddToDatabase
     {
-        public static void requestAddToDatabase(string newProduct)
+        public static void PushToDatabase(FromFileToStruct.Product newProduct)
         {
-
+            CompWebService.WebServiceSoapClient client = new CompWebService.WebServiceSoapClient();
+            MessageBox.Show(newProduct.name + " " + newProduct.price.ToString() + " " + newProduct.date + " " + newProduct.shop);
+            client.AddNewProductToDatabase(newProduct.name, newProduct.price, newProduct.date, newProduct.shop);
+            //client.test();
         }
     }
 }

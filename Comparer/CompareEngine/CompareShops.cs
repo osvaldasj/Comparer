@@ -32,7 +32,7 @@ namespace Comparer
 
             CurrentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug");
             List<FromFileToStruct.Product> currentCheck = new List<FromFileToStruct.Product>();
-            currentCheck = FromFileToStruct.MakeProductList(currentDirectory + "\\TempResult.txt");
+            currentCheck = FromFileToStruct.MakeProductList3(currentDirectory + "\\TempResult.txt");
 
             List<FromFileToStruct.Product> fullDatabase = new List<FromFileToStruct.Product>();
             fullDatabase = FromFileToStruct.MakeProductList2(currentDirectory + "\\FullDatabase.txt");

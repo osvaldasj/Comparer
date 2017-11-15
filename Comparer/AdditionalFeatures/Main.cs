@@ -90,28 +90,6 @@ namespace Comparer
         {
             string url = @"http://192.168.0.200/TestComparer/api/mytest/computemulti";
 
-            /*using (var wb = new WebClient())
-            {
-                var response = wb.DownloadString(url);
-                moneySaved.Text = response.ToString();
-            }*/
-
-            /*var values = new Dictionary<string, string>
-            {
-                  { "thing1", "hello" },
-                  { "thing2", "world" }
-            };
-
-            var content = new FormUrlEncodedContent(values);
-            
-
-            var response = await client.PostAsync(url, content);
-
-            var responseString = await response.Content.ReadAsStringAsync();
-            */
-
-
-
             using (var client = new HttpClient())
             {
 

@@ -70,7 +70,9 @@ namespace Comparer
         public static List<Product> MakeProductList2(string path)
         {
             List<Product> list = new List<Product>();
-            string[] text = System.IO.File.ReadAllLines(path);
+            //string[] text = System.IO.File.ReadAllLines(path);
+            CompWebService.WebServiceSoapClient client = new CompWebService.WebServiceSoapClient();
+            string[] text = client.ProductList().Split('$');
             int index = 0;
             try
             {
@@ -82,8 +84,8 @@ namespace Comparer
 
 
                     string strPrice = text[index].Substring(idx, text[index].Length - idx);
-                    string[] StrRemake = strPrice.Split(',');
-                    strPrice = StrRemake[0] + '.' + StrRemake[1];
+                    //string[] StrRemake = strPrice.Split(',');
+                    //strPrice = StrRemake[0] + '.' + StrRemake[1];
 
                     float price = float.Parse(strPrice);
 
@@ -98,6 +100,33 @@ namespace Comparer
                 }
             }
             catch { }
+
+            return list;
+        }
+
+        public static List<Product> MakeProductList3(string path)
+        {
+            List<Product> list = new List<Product>();
+            string[] text = System.IO.File.ReadAllLines(path);
+            int index = 0;
+            //takes shop name and date of the check from file and keeps them in a constant string
+            string shopName = text[index++];
+            string checkDate = text[index];
+            index++;
+            //starting from 3rd line starts to make a new product struct
+                for (int i = index; i<text.Length; i++)//(text[index] != null)
+                {
+                    string name = text[i];
+                    i++;
+                    string strFloat = text[i];
+                    strFloat = strFloat.Replace(',', '.');
+                    float price = float.Parse(strFloat);
+                    //adds name until the space which was found making a float
+                    price = formatFloat(price);
+                    Product temp = new Product(name, price, shopName, checkDate);
+                    //adds product to current list
+                    list.Add(temp);
+                }
 
             return list;
         }

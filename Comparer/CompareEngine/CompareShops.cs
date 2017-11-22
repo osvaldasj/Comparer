@@ -32,27 +32,26 @@ namespace Comparer
 
             CurrentDirectory = (Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()))) + @"\Comparer\bin\Debug");
             List<FromFileToStruct.Product> currentCheck = new List<FromFileToStruct.Product>();
-            currentCheck = FromFileToStruct.MakeProductList(currentDirectory + "\\TempResult.txt");
+            currentCheck = FromFileToStruct.MakeProductList3(currentDirectory + "\\TempResult.txt");
 
             List<FromFileToStruct.Product> fullDatabase = new List<FromFileToStruct.Product>();
             fullDatabase = FromFileToStruct.MakeProductList2(currentDirectory + "\\FullDatabase.txt");
 
             var maxima = from x in fullDatabase where x.shop == "maxima" select x;
-            var rimi = from x in fullDatabase where x.shop == "rimi" select x;            
+            var rimi = from x in fullDatabase where x.shop == "rimi" select x;
 
             WriteToFile write = new WriteToFile();
             float moneyDifference = 0;
 
 
+
             if (currentCheck[0].shop == "maxima")
             {
-                infofile = write.Write(currentDirectory, 1);
-                moneyDifference = EvaluateTwoChecks(currentCheck, rimi, write, infofile);
+                moneyDifference = InfoCollector(1, currentCheck, rimi, write);
             }
             else if (currentCheck[0].shop == "rimi")
             {
-                infofile = write.Write(currentDirectory, 2);
-                moneyDifference = EvaluateTwoChecks(currentCheck, maxima, write, infofile);
+                moneyDifference = InfoCollector(2, currentCheck, rimi, write);
             }
             else
             {
@@ -65,13 +64,21 @@ namespace Comparer
             return infofile;
         }
 
+        private float InfoCollector(int which, List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write)
+        {
+            infofile = write.Write(currentDirectory, which);
+            float moneyDifference = 0;
+            moneyDifference = EvaluateTwoChecks(currentCheck, otherShopList, write, infofile);
+            return moneyDifference;
+        }
+
         public float EvaluateTwoChecks(List<FromFileToStruct.Product> currentCheck, IEnumerable otherShopList, WriteToFile write, string info)
         {
-            int neededValue = 85;
+            int neededValue = 80;
             int currentValue;
             float moneyDifference = 0;
-            int counter = 0;
-       
+            bool wasFound = false;
+
             for (int i = 0; i <= currentCheck.Count - 1; i++)
             {
                 foreach(FromFileToStruct.Product otherShop in otherShopList)
@@ -81,18 +88,15 @@ namespace Comparer
                     {
                         moneyDifference += (currentCheck[i].price - otherShop.price);
                         write.Write(currentCheck[i].name, info, (currentCheck[i].price - otherShop.price));
-                    }
-                    else
-                    {
-                        counter++;
+                        wasFound = true;
                     }
                 }
-                if (counter == currentCheck.Count)
+                if (!wasFound)
                 {
-                    //RequestForDatabase(currentCheck[i]);  //to be made in the future
-                    MessageBox.Show("unrecognized product");
+                    UpdateDatabase.RequestForDatabase(currentCheck[i]);  //to be made in the future
+                    //MessageBox.Show("unrecognized product: " + currentCheck[i].name);
                 }
-                counter = 0;
+                wasFound = false;
             }
 
             return moneyDifference;

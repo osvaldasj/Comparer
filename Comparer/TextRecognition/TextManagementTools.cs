@@ -1,10 +1,28 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
+delegate string TextChanger(string text);
 namespace Comparer.TextRecognition
+
 {
     public static class TextManagementTools
     {
+        // Delegates usage
+        public static string RemoveSpaceInBeggining(string text)
+        {
+            return Regex.Replace(text, @"\d[ ]\d", @"\d\d");
+        }
+
+        public static string RemoveSpaceInMiddle(string text)
+        {
+            return Regex.Replace(text, @"\d[ ][,]\d", @"\d\d");
+        }
+
+        public static string RemoveSpaceInEnd(string text)
+        {
+            return Regex.Replace(text, @"\d[,][ ]\d", @"\d\d");
+        }
+
         // Add new line symbol at the end of string
         public static string AddNewLine(this String str)
         {
@@ -26,10 +44,16 @@ namespace Comparer.TextRecognition
         // Remove spaces between numbers
         public static string RemoveSpacesBetweenNumbers(this String str)
         {
-            str = Regex.Replace(str, @"\d[ ]\d", @"\d\d");
-            str = Regex.Replace(str, @"\d[ ][,]\d", @"\d\d");
-            str = Regex.Replace(str, @"\d[,][ ]\d", @"\d\d");
-            return str;
+            TextChanger chg;
+            TextChanger chg1 = new TextChanger(RemoveSpaceInBeggining);
+            TextChanger chg2 = new TextChanger(RemoveSpaceInMiddle);
+            TextChanger chg3 = new TextChanger(RemoveSpaceInEnd);
+
+            chg = chg1;
+            chg += chg2;
+            chg += chg3;
+
+            return chg(str);
         }
 
     }

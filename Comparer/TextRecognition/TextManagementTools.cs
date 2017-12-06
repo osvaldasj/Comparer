@@ -8,11 +8,6 @@ namespace Comparer.TextRecognition
     public static class TextManagementTools
     {
         // Delegates usage
-        public static string RemoveSpaceInBeggining(string text)
-        {
-            return Regex.Replace(text, @"\d[ ]\d", @"\d\d");
-        }
-
         public static string RemoveSpaceInMiddle(string text)
         {
             return Regex.Replace(text, @"\d[ ][,]\d", @"\d\d");
@@ -44,12 +39,15 @@ namespace Comparer.TextRecognition
         // Remove spaces between numbers
         public static string RemoveSpacesBetweenNumbers(this String str)
         {
-            TextChanger chg;
-            TextChanger chg1 = new TextChanger(RemoveSpaceInBeggining);
-            TextChanger chg2 = new TextChanger(RemoveSpaceInMiddle);
+            //Anonymous method
+            TextChanger chg = delegate (string text)
+            {
+                return Regex.Replace(text, @"\d[ ]\d", @"\d\d");
+            };
+
+            TextChanger chg2(string text => Console.WriteLine(text));
             TextChanger chg3 = new TextChanger(RemoveSpaceInEnd);
 
-            chg = chg1;
             chg += chg2;
             chg += chg3;
 

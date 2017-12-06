@@ -45,7 +45,7 @@ namespace Comparer.TextRecognition
                 return Regex.Replace(text, @"\d[ ]\d", @"\d\d");
             };
 
-            TextChanger chg2(string text => Console.WriteLine(text));
+            TextChanger chg2 = new TextChanger(RemoveSpaceInMiddle);
             TextChanger chg3 = new TextChanger(RemoveSpaceInEnd);
 
             chg += chg2;

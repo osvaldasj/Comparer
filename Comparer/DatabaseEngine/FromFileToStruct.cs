@@ -107,6 +107,7 @@ namespace Comparer
         public static List<Product> MakeProductList3(string path)
         {
             List<Product> list = new List<Product>();
+            Lazy<Product> prod = new Lazy<Product>();
             string[] text = System.IO.File.ReadAllLines(path);
             int index = 0;
             //takes shop name and date of the check from file and keeps them in a constant string
@@ -123,7 +124,12 @@ namespace Comparer
                     float price = float.Parse(strFloat);
                     //adds name until the space which was found making a float
                     price = formatFloat(price);
-                    Product temp = new Product(name, price, shopName, checkDate);
+                    Product temp = prod.Value;
+                    //Product temp = new Product(name, price, shopName, checkDate);
+                    temp.name = name;
+                    temp.price = price;
+                    temp.shop = shopName;
+                    temp.date = checkDate;
                     //adds product to current list
                     list.Add(temp);
                 }

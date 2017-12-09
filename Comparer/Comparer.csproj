@@ -49,6 +49,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.1.1.0\lib\net45\Google.Api.CommonProtos.dll</HintPath>
     </Reference>
@@ -89,11 +95,13 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Interactive.Async, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Interactive.Async.3.1.1\lib\net45\System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -106,9 +114,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalFeatures\LazyInicialization.cs" />
     <Compile Include="AdditionalFeatures\TestControllerModel.cs" />
     <Compile Include="CompareEngine\IWritable.cs" />
     <Compile Include="CompareEngine\WriteToFile.cs" />
+    <Compile Include="ComparerModel.cs" />
     <Compile Include="Connected Services\CompWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,6 +128,15 @@
     <Compile Include="CompareEngine\CompareShops.cs" />
     <Compile Include="DatabaseEngine\FromFileToStruct.cs" />
     <Compile Include="DatabaseEngine\FromStructToFile.cs" />
+    <Compile Include="Migrations\201712070003060_dbCreate.cs" />
+    <Compile Include="Migrations\201712070003060_dbCreate.Designer.cs">
+      <DependentUpon>201712070003060_dbCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071115510_inline.cs" />
+    <Compile Include="Migrations\201712071115510_inline.Designer.cs">
+      <DependentUpon>201712071115510_inline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="TextRecognition\ImageRecognition.cs" />
     <Compile Include="AdditionalFeatures\Main.cs">
       <SubType>Form</SubType>
@@ -133,6 +152,12 @@
     <Compile Include="DatabaseEngine\UpdateDatabase.cs" />
     <EmbeddedResource Include="AdditionalFeatures\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712070003060_dbCreate.resx">
+      <DependentUpon>201712070003060_dbCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071115510_inline.resx">
+      <DependentUpon>201712071115510_inline.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

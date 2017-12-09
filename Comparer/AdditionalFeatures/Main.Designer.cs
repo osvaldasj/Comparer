@@ -40,6 +40,7 @@
             this.compareButton = new System.Windows.Forms.Button();
             this.moneySaved = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
+            this.nonWebBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,11 +163,22 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // nonWebBtn
+            // 
+            this.nonWebBtn.Location = new System.Drawing.Point(3, 288);
+            this.nonWebBtn.Name = "nonWebBtn";
+            this.nonWebBtn.Size = new System.Drawing.Size(119, 35);
+            this.nonWebBtn.TabIndex = 18;
+            this.nonWebBtn.Text = "no web";
+            this.nonWebBtn.UseVisualStyleBackColor = true;
+            this.nonWebBtn.Click += new System.EventHandler(this.nonWebBtn_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.nonWebBtn);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.moneySaved);
             this.Controls.Add(this.compareButton);
@@ -202,5 +214,6 @@
         private System.Windows.Forms.Button compareButton;
         private System.Windows.Forms.Label moneySaved;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button nonWebBtn;
     }
 }

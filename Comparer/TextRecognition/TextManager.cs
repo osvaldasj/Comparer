@@ -67,7 +67,7 @@ namespace Comparer
                 return "unable to detect products";
             }
         }
-
+                              
         // Extract date from string
         private string GetDate(string text)
         {
@@ -75,8 +75,8 @@ namespace Comparer
             foreach (Match m in regex.Matches(text))
             {
                 DateTime dateTime;
-                if (DateTime.TryParseExact(m.Value, "yyyy-MM-dd", null, DateTimeStyles.None, out dateTime))
-                    return dateTime.ToString().Remove(dateTime.ToString().Length - 12);
+                if (DateTime.TryParseExact(m.Value + " 0:00:00 AM", "yyyy-MM-dd h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
+                    return dateTime.ToString("MM/dd/yy");
             }
             return "unable to detect date";
         }

@@ -193,7 +193,6 @@
     <Compile Include="Controllers\ShopCompareController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="ComparisonEngine\CompareShops.cs" />
-    <Compile Include="ComparisonEngine\DatabaseTaker.cs" />
     <Compile Include="ComparisonEngine\FromFileToStruct.cs" />
     <Compile Include="ComparisonEngine\IWritable.cs" />
     <Compile Include="ComparisonEngine\WriteToFile.cs" />

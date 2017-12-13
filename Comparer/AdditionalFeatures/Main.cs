@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.Specialized;
-using Comparer.AdditionalFeatures;
 
 namespace Comparer
 {
@@ -95,7 +87,7 @@ namespace Comparer
                 resultContent = "";
                 for (int i = 0; i < q.Length; i++)
                     resultContent += q[i] + System.Environment.NewLine;
-                    
+
                 moneySaved.Text = resultContent;
             }
 
@@ -127,42 +119,61 @@ namespace Comparer
         {
             using (var db = new ComparerModel())
             {
-                var productA = new Product() { Id = 1, Name = "pienas", Price = 1.02f , Date = DateTime.Now, Accept = false};
+                var productA = new Product() { Id = 1, Name = "pienas", Price = 1.02f, Date = DateTime.Now, Accept = false };
                 var productB = new Product() { Id = 2, Name = "suris", Price = 2.54f, Date = DateTime.Now, Accept = false };
                 db.Products.Add(productA);
                 db.Products.Add(productB);
                 db.SaveChanges();
             }
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDataReview_Click(object sender, EventArgs e)
+        {
+            // Scan throught data
+            DataReviewManager manager = new DataReviewManager();
+            Console.WriteLine(manager.PickRecentChanges(8));
+
+
+
+            // Open new window
+            DataReview settingsForm = new DataReview();
+
+            settingsForm.Show();
+        }
     }
 }
 
 
-        /*private async Task btnTest_ClickAsync(object sender, EventArgs e)
+/*private async Task btnTest_ClickAsync(object sender, EventArgs e)
+{
+
+    moneySaved.Text = "started Task?";
+
+    Lazy<LazyInicialization> lazyTest = new Lazy<LazyInicialization>();
+    LazyInicialization x = lazyTest.Value;
+    MessageBox.Show(x.ToString());
+
+    string url = @"http://192.168.0.200/TestComparer/api/mytest/computemulti";
+
+    using (var client = new HttpClient())
+    {
+
+        var content = new FormUrlEncodedContent(new[]
         {
-
-            moneySaved.Text = "started Task?";
-
-            Lazy<LazyInicialization> lazyTest = new Lazy<LazyInicialization>();
-            LazyInicialization x = lazyTest.Value;
-            MessageBox.Show(x.ToString());
-
-            string url = @"http://192.168.0.200/TestComparer/api/mytest/computemulti";
-
-            using (var client = new HttpClient())
-            {
-
-                var content = new FormUrlEncodedContent(new[]
-                {
-                new KeyValuePair<string, string>("", "String to Pass")
-            });
-                var result = await client.PostAsync(url, content);
-                string resultContent = await result.Content.ReadAsStringAsync();
-                moneySaved.Text = resultContent;
-            }
-            
+        new KeyValuePair<string, string>("", "String to Pass")
+    });
+        var result = await client.PostAsync(url, content);
+        string resultContent = await result.Content.ReadAsStringAsync();
+        moneySaved.Text = resultContent;
+    }
 
 
-            //moneySaved.Text = responseString;
 
-        }*/
+    //moneySaved.Text = responseString;
+
+}*/

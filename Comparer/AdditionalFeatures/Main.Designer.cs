@@ -41,14 +41,16 @@
             this.moneySaved = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
             this.nonWebBtn = new System.Windows.Forms.Button();
+            this.btnDataReview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // openButton
             // 
-            this.openButton.Location = new System.Drawing.Point(12, 12);
+            this.openButton.Location = new System.Drawing.Point(32, 29);
+            this.openButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(110, 36);
+            this.openButton.Size = new System.Drawing.Size(293, 86);
             this.openButton.TabIndex = 0;
             this.openButton.Text = "Select Picture";
             this.openButton.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // mainPictureBox
             // 
-            this.mainPictureBox.Location = new System.Drawing.Point(128, 1);
+            this.mainPictureBox.Location = new System.Drawing.Point(341, 2);
+            this.mainPictureBox.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.mainPictureBox.Name = "mainPictureBox";
-            this.mainPictureBox.Size = new System.Drawing.Size(740, 692);
+            this.mainPictureBox.Size = new System.Drawing.Size(1973, 1650);
             this.mainPictureBox.TabIndex = 2;
             this.mainPictureBox.TabStop = false;
             // 
@@ -66,17 +69,19 @@
             // 
             this.mainLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.mainLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainLabel.Location = new System.Drawing.Point(874, 1);
+            this.mainLabel.Location = new System.Drawing.Point(2331, 2);
+            this.mainLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(476, 267);
+            this.mainLabel.Size = new System.Drawing.Size(1269, 637);
             this.mainLabel.TabIndex = 3;
             // 
             // recognizeButton
             // 
             this.recognizeButton.Enabled = false;
-            this.recognizeButton.Location = new System.Drawing.Point(12, 54);
+            this.recognizeButton.Location = new System.Drawing.Point(32, 129);
+            this.recognizeButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.recognizeButton.Name = "recognizeButton";
-            this.recognizeButton.Size = new System.Drawing.Size(110, 37);
+            this.recognizeButton.Size = new System.Drawing.Size(293, 88);
             this.recognizeButton.TabIndex = 4;
             this.recognizeButton.Text = "Recognize";
             this.recognizeButton.UseVisualStyleBackColor = true;
@@ -85,9 +90,10 @@
             // rotateLeftButton
             // 
             this.rotateLeftButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rotateLeftButton.Location = new System.Drawing.Point(12, 660);
+            this.rotateLeftButton.Location = new System.Drawing.Point(32, 1574);
+            this.rotateLeftButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.rotateLeftButton.Name = "rotateLeftButton";
-            this.rotateLeftButton.Size = new System.Drawing.Size(49, 33);
+            this.rotateLeftButton.Size = new System.Drawing.Size(131, 79);
             this.rotateLeftButton.TabIndex = 5;
             this.rotateLeftButton.Text = "RL";
             this.rotateLeftButton.UseVisualStyleBackColor = true;
@@ -95,9 +101,10 @@
             // 
             // rotateRightButton
             // 
-            this.rotateRightButton.Location = new System.Drawing.Point(67, 660);
+            this.rotateRightButton.Location = new System.Drawing.Point(179, 1574);
+            this.rotateRightButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.rotateRightButton.Name = "rotateRightButton";
-            this.rotateRightButton.Size = new System.Drawing.Size(49, 33);
+            this.rotateRightButton.Size = new System.Drawing.Size(131, 79);
             this.rotateRightButton.TabIndex = 6;
             this.rotateRightButton.Text = "RR";
             this.rotateRightButton.UseVisualStyleBackColor = true;
@@ -107,9 +114,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 644);
+            this.label1.Location = new System.Drawing.Point(24, 1536);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.Size = new System.Drawing.Size(258, 32);
             this.label1.TabIndex = 7;
             this.label1.Text = "Image Orientation";
             // 
@@ -117,9 +125,10 @@
             // 
             this.imageCheck.AutoSize = true;
             this.imageCheck.Enabled = false;
-            this.imageCheck.Location = new System.Drawing.Point(105, 568);
+            this.imageCheck.Location = new System.Drawing.Point(280, 1354);
+            this.imageCheck.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.imageCheck.Name = "imageCheck";
-            this.imageCheck.Size = new System.Drawing.Size(15, 14);
+            this.imageCheck.Size = new System.Drawing.Size(34, 33);
             this.imageCheck.TabIndex = 8;
             this.imageCheck.UseVisualStyleBackColor = true;
             // 
@@ -127,18 +136,20 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 568);
+            this.label2.Location = new System.Drawing.Point(0, 1354);
+            this.label2.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.Size = new System.Drawing.Size(226, 32);
             this.label2.TabIndex = 9;
             this.label2.Text = "Image Selected";
             // 
             // compareButton
             // 
             this.compareButton.Enabled = false;
-            this.compareButton.Location = new System.Drawing.Point(12, 97);
+            this.compareButton.Location = new System.Drawing.Point(32, 231);
+            this.compareButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.compareButton.Name = "compareButton";
-            this.compareButton.Size = new System.Drawing.Size(110, 36);
+            this.compareButton.Size = new System.Drawing.Size(293, 86);
             this.compareButton.TabIndex = 12;
             this.compareButton.Text = "Compare with Database";
             this.compareButton.UseVisualStyleBackColor = true;
@@ -148,16 +159,18 @@
             // 
             this.moneySaved.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.moneySaved.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.moneySaved.Location = new System.Drawing.Point(874, 311);
+            this.moneySaved.Location = new System.Drawing.Point(2331, 742);
+            this.moneySaved.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.moneySaved.Name = "moneySaved";
-            this.moneySaved.Size = new System.Drawing.Size(476, 382);
+            this.moneySaved.Size = new System.Drawing.Size(1269, 911);
             this.moneySaved.TabIndex = 16;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(3, 249);
+            this.btnTest.Location = new System.Drawing.Point(8, 594);
+            this.btnTest.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(117, 33);
+            this.btnTest.Size = new System.Drawing.Size(312, 79);
             this.btnTest.TabIndex = 17;
             this.btnTest.Text = "Test Button";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -165,19 +178,32 @@
             // 
             // nonWebBtn
             // 
-            this.nonWebBtn.Location = new System.Drawing.Point(3, 288);
+            this.nonWebBtn.Location = new System.Drawing.Point(8, 687);
+            this.nonWebBtn.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.nonWebBtn.Name = "nonWebBtn";
-            this.nonWebBtn.Size = new System.Drawing.Size(119, 35);
+            this.nonWebBtn.Size = new System.Drawing.Size(317, 83);
             this.nonWebBtn.TabIndex = 18;
             this.nonWebBtn.Text = "no web";
             this.nonWebBtn.UseVisualStyleBackColor = true;
             this.nonWebBtn.Click += new System.EventHandler(this.nonWebBtn_Click);
             // 
+            // btnDataReview
+            // 
+            this.btnDataReview.Location = new System.Drawing.Point(30, 331);
+            this.btnDataReview.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.btnDataReview.Name = "btnDataReview";
+            this.btnDataReview.Size = new System.Drawing.Size(295, 79);
+            this.btnDataReview.TabIndex = 19;
+            this.btnDataReview.Text = "Data Review";
+            this.btnDataReview.UseVisualStyleBackColor = true;
+            this.btnDataReview.Click += new System.EventHandler(this.btnDataReview_Click);
+            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.ClientSize = new System.Drawing.Size(3632, 1660);
+            this.Controls.Add(this.btnDataReview);
             this.Controls.Add(this.nonWebBtn);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.moneySaved);
@@ -191,9 +217,11 @@
             this.Controls.Add(this.mainLabel);
             this.Controls.Add(this.mainPictureBox);
             this.Controls.Add(this.openButton);
+            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -215,5 +243,6 @@
         private System.Windows.Forms.Label moneySaved;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button nonWebBtn;
+        private System.Windows.Forms.Button btnDataReview;
     }
 }

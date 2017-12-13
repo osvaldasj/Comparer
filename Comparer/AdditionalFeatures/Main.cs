@@ -136,7 +136,7 @@ namespace Comparer
         {
             // Scan throught data
             DataReviewManager manager = new DataReviewManager();
-            Console.WriteLine(manager.PickRecentChanges(8));
+            Console.WriteLine(manager.ToString(manager.PickRecentChanges(8)));
 
 
 

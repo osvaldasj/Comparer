@@ -5,8 +5,6 @@ namespace Comparer
 {
     class DataReviewManager
     {
-        const int NUMBER_OF_CHANGES_DISPLAYED = 8;
-
         public class RecentProduct
         {
             public string name;
@@ -15,6 +13,33 @@ namespace Comparer
             public System.DateTime beforeDate;
             public float recentPrice;
             public float beforePrice;
+        }
+
+        public string ToString(List<RecentProduct> list)
+        {
+            if (!list.Any())
+            {
+                return "No recent changes can be identified";
+            }
+
+            string temp = "";
+            float tempNumber;
+            foreach (var product in list)
+            {
+                temp = temp + "In " + product.shopName.ToString() + ": " + product.name.ToString();
+                tempNumber = product.beforePrice - product.recentPrice;
+                if (tempNumber < 0)
+                {
+                    tempNumber = -tempNumber;
+                    temp = temp + "got cheaper by " + tempNumber;
+                }
+                else
+                {
+                    temp = temp + "got more expensive by " + tempNumber;
+                }
+                temp = temp + " and now costs " + product.recentPrice + "\n";
+            }
+            return temp;
         }
 
         public List<RecentProduct> PickRecentChanges(int amount)
@@ -44,7 +69,7 @@ namespace Comparer
                     i++;
                     foreach (var product2 in recentList.Skip(i))
                     {
-                        if (product.ProductID == product2.ProductID && product.ShopID == product2.ShopID)
+                        if (product.ProductID == product2.ProductID && product.ShopID == product2.ShopID && product.PriceD != product2.PriceD)
                         {
                             temp.beforeDate = product2.DateT;
                             temp.beforePrice = product2.PriceD;

@@ -69,10 +69,10 @@
             // 
             // textBoxRecentPricesChanges
             // 
-            this.textBoxRecentPricesChanges.Location = new System.Drawing.Point(13, 23);
+            this.textBoxRecentPricesChanges.Location = new System.Drawing.Point(12, 12);
             this.textBoxRecentPricesChanges.Multiline = true;
             this.textBoxRecentPricesChanges.Name = "textBoxRecentPricesChanges";
-            this.textBoxRecentPricesChanges.Size = new System.Drawing.Size(304, 335);
+            this.textBoxRecentPricesChanges.Size = new System.Drawing.Size(304, 379);
             this.textBoxRecentPricesChanges.TabIndex = 2;
             // 
             // DataReview

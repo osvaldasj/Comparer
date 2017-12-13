@@ -18,11 +18,14 @@ namespace Comparer
     public partial class Main : Form
     {
         public string inputFile;
+        //public string name { get; set; }
         bool IMG = false;
 
-        public Main()
+        public Main(string name, string value)
         {
             InitializeComponent();
+            welcomeLabel.Text = "Welcome, " + name + "!";
+            spentLabel.Text = value;
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -81,6 +84,7 @@ namespace Comparer
         {
             string url = @"http://192.168.0.200/WEBcmp/api/compareshops";  //mezon
             //string url = @"http://10.3.5.56//WEBcmp/api/compareshops";    //mif
+            //string url = @"http://192.168.1.153/WEBcmp/api/compareshops"; //barak
 
             using (var client = new HttpClient())
             {
@@ -133,6 +137,11 @@ namespace Comparer
                 db.Products.Add(productB);
                 db.SaveChanges();
             }
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

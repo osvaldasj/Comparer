@@ -115,6 +115,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalFeatures\LazyInicialization.cs" />
+    <Compile Include="AdditionalFeatures\LogInScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdditionalFeatures\LogInScreen.Designer.cs">
+      <DependentUpon>LogInScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdditionalFeatures\RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdditionalFeatures\RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdditionalFeatures\TestControllerModel.cs" />
     <Compile Include="CompareEngine\IWritable.cs" />
     <Compile Include="CompareEngine\WriteToFile.cs" />
@@ -150,8 +162,14 @@
     <Compile Include="TextRecognition\TextManagementTools.cs" />
     <Compile Include="TextRecognition\TextManager.cs" />
     <Compile Include="DatabaseEngine\UpdateDatabase.cs" />
+    <EmbeddedResource Include="AdditionalFeatures\LogInScreen.resx">
+      <DependentUpon>LogInScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdditionalFeatures\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdditionalFeatures\RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712070003060_dbCreate.resx">
       <DependentUpon>201712070003060_dbCreate.cs</DependentUpon>

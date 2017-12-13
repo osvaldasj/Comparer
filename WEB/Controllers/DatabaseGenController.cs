@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,11 +20,17 @@ namespace WEB.Controllers
             {
                 using (var db = new ComparerModel())
                 {
-                    var productA = new Product() { Id = 5, Name = "Jogurtas", Price = 1.57f, Date = DateTime.Now, Accept = false };
+                    DateTime date = DateTime.ParseExact("12/09/17" + " 0:00:00 AM",
+                               "MM/dd/yy h:mm:ss tt",
+                               CultureInfo.InvariantCulture);
+                    var priceX = new Price() { DateT = date, PriceD = 55, ProductID = 55, ShopID = 55};
+                    db.Prices.Add(priceX);
+                    db.SaveChanges();
+                    /*var productA = new Product() { Id = 5, Name = "Jogurtas", Price = 1.57f, Date = DateTime.Now, Accept = false };
                     var productB = new Product() { Id = 6, Name = "Batonas", Price = 10.97f, Date = DateTime.Now, Accept = false };
                     db.Products.Add(productA);
                     db.Products.Add(productB);
-                    db.SaveChanges();
+                    db.SaveChanges();*/
                     
                 }
                 return Ok("success");

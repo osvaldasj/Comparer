@@ -20,7 +20,7 @@ namespace Comparer
         public DbSet<Price> Price { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Shop> Shop { get; set; }
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Customers> Customer { get; set; }
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
@@ -57,7 +57,7 @@ namespace Comparer
         public string Address { get; set; }
     }
 
-    public class Customer
+    public class Customers
     {
         [Key]
         public string CardID { get; set; }

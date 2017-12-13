@@ -41,6 +41,10 @@
             this.moneySaved = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
             this.nonWebBtn = new System.Windows.Forms.Button();
+            this.welcomeLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.spentLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,11 +177,55 @@
             this.nonWebBtn.UseVisualStyleBackColor = true;
             this.nonWebBtn.Click += new System.EventHandler(this.nonWebBtn_Click);
             // 
+            // welcomeLabel
+            // 
+            this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeLabel.Location = new System.Drawing.Point(537, 12);
+            this.welcomeLabel.Name = "welcomeLabel";
+            this.welcomeLabel.Size = new System.Drawing.Size(109, 25);
+            this.welcomeLabel.TabIndex = 19;
+            this.welcomeLabel.Text = "Welcome!";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(5, 411);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Total money spent:";
+            // 
+            // spentLabel
+            // 
+            this.spentLabel.AutoSize = true;
+            this.spentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spentLabel.Location = new System.Drawing.Point(7, 444);
+            this.spentLabel.Name = "spentLabel";
+            this.spentLabel.Size = new System.Drawing.Size(24, 25);
+            this.spentLabel.TabIndex = 21;
+            this.spentLabel.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(81, 444);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 25);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Eur";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.spentLabel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.welcomeLabel);
             this.Controls.Add(this.nonWebBtn);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.moneySaved);
@@ -194,6 +242,7 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -215,5 +264,9 @@
         private System.Windows.Forms.Label moneySaved;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button nonWebBtn;
+        private System.Windows.Forms.Label welcomeLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label spentLabel;
+        private System.Windows.Forms.Label label4;
     }
 }

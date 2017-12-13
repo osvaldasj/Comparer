@@ -36,7 +36,7 @@ namespace WEB.ComparisonEngine
             int index = 0;
             //takes shop name and date of the check from file and keeps them in a constant string
             string shopName = text[index++];
-            DateTime date = DateTime.ParseExact("01/01/20 0:00:00 AM",
+            DateTime date = DateTime.ParseExact(text[index]+" 0:00:00 AM",
                                "MM/dd/yy h:mm:ss tt",
                                CultureInfo.InvariantCulture);
             DateTime checkDate = date;
@@ -83,7 +83,7 @@ namespace WEB.ComparisonEngine
                     string shop = text[index].Substring(0, space1);
                     string datex = text[index].Substring(space1 + 1, space2 - space1 - 1);
 
-                var date = DateTime.ParseExact("01/01/20 0:00:00 AM",
+                var date = DateTime.ParseExact(datex + " 0:00:00 AM",
                                "MM/dd/yy h:mm:ss tt",
                                CultureInfo.InvariantCulture);
 
@@ -117,7 +117,7 @@ namespace WEB.ComparisonEngine
                     string shop = text[index].Substring(0, space1);
                     string datex = text[index].Substring(space1 + 1, space2 - space1 - 1);
 
-                    var date = DateTime.ParseExact("01/01/20 0:00:00 AM",
+                    var date = DateTime.ParseExact(datex + " 0:00:00 AM",
                                "MM/dd/yy h:mm:ss tt",
                                CultureInfo.InvariantCulture);
 

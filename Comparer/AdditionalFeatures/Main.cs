@@ -135,8 +135,7 @@ namespace Comparer
         private void btnDataReview_Click(object sender, EventArgs e)
         {
             // Scan throught data
-            DataReviewManager manager = new DataReviewManager();
-            Console.WriteLine(manager.ToString(manager.PickRecentChanges(8)));
+
 
 
 

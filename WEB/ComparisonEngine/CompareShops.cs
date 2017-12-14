@@ -16,6 +16,7 @@ namespace WEB.ComparisonEngine
         private string first;
         private string second;
         private string third;
+        private float fullCheckPrice = 0;
 
         public IWritable write { get; set; }
         public CompareShops(IWritable writeX)
@@ -89,6 +90,7 @@ namespace WEB.ComparisonEngine
                             moneyDifference += (curr.price - otherShop.Price);
                             second += write.Write(curr.name, (curr.price - otherShop.Price), infoToShow);
                             wasFound = true;
+                            fullCheckPrice += curr.price;
                         }
                     }
                     if (!wasFound)
@@ -103,7 +105,7 @@ namespace WEB.ComparisonEngine
             {
                 //throw new Exception("Database was empty");
             }
-
+            UpdateDababase.CustomerSpentUpdate(fullCheckPrice);
             return moneyDifference;
         }
         public string Unrecognized(string name)

@@ -55,9 +55,17 @@ namespace WEB.ComparisonEngine
         {
             using (var db = new ComparerModel())
             {
-                Product a = new Product() { Name = x.name, Price = x.price, Shop = x.shop, Date = x.date, Accept = false };
+                Product a = new Product() { Name = x.name, Price = x.price, Shop = x.shop, Date = x.date, Accept = false, ShopID = 0 };
                 db.Products.Add(a);
                 db.SaveChanges();
+            }
+        }
+
+        internal static void CustomerSpentUpdate(float fullCheckPrice)
+        {
+            using (var db = new ComparerModel())
+            {
+
             }
         }
     }

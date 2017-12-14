@@ -33,10 +33,10 @@ namespace Comparer.AdditionalFeatures
                 });
             HttpResponseMessage result = await client.PostAsync(url, content);
             string resultContent = await result.Content.ReadAsStringAsync();
-            if(resultContent.Substring(1,7) == "success")
+            if(resultContent.Substring(13,7) == "success")
             {
                 this.Hide();
-                Main m = new Main(usernameBox.Text, resultContent.Substring(8, resultContent.Length-9));
+                Main m = new Main(usernameBox.Text, resultContent.Substring(20, resultContent.Length-21), resultContent.Substring(1,12));
                 m.ShowDialog();
             }
             else

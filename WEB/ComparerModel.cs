@@ -33,7 +33,7 @@ namespace WEB
         public string Name { get; set; }
         public float Price { get; set; }
         public string Shop { get; set; }
-        public string ShopID { get; set; }
+        public int ShopID { get; set; }
         public DateTime Date { get; set; }
         public bool Accept { get; set; }
     }

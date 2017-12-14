@@ -42,6 +42,7 @@ namespace WEB.Controllers
                 bool exist = false;
                 float spent = 0;
                 var UP = details.Split('$');
+                string custID = "";
                 using (var db = new ComparerModel())
                 {
                     var cust = db.Customers.ToList();
@@ -51,12 +52,13 @@ namespace WEB.Controllers
                         {
                             exist = true;
                             spent = x.Spent;
+                            custID = x.CardID;
                         }
 
                     }
                 }
                 if (exist)
-                    return Ok("success" + spent.ToString());
+                    return Ok(custID + "success" + spent.ToString());
                 else
                     return Ok("failure");
             }

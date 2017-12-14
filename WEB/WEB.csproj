@@ -225,6 +225,14 @@
     <Compile Include="Migrations\201712111958371_new id for price.Designer.cs">
       <DependentUpon>201712111958371_new id for price.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712132315519_shop id fix.cs" />
+    <Compile Include="Migrations\201712132315519_shop id fix.Designer.cs">
+      <DependentUpon>201712132315519_shop id fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712140138170_nullableShop.cs" />
+    <Compile Include="Migrations\201712140138170_nullableShop.Designer.cs">
+      <DependentUpon>201712140138170_nullableShop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -325,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712111958371_new id for price.resx">
       <DependentUpon>201712111958371_new id for price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712132315519_shop id fix.resx">
+      <DependentUpon>201712132315519_shop id fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712140138170_nullableShop.resx">
+      <DependentUpon>201712140138170_nullableShop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

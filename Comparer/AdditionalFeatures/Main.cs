@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Specialized;
 using Comparer.AdditionalFeatures;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Comparer
 {
@@ -20,12 +22,15 @@ namespace Comparer
         public string inputFile;
         //public string name { get; set; }
         bool IMG = false;
+        string custID;
+        public float currentSpent = 0;
 
-        public Main(string name, string value)
+        public Main(string name, string value, string ID)
         {
             InitializeComponent();
             welcomeLabel.Text = "Welcome, " + name + "!";
             spentLabel.Text = value;
+            custID = ID;
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -95,7 +100,10 @@ namespace Comparer
                 HttpResponseMessage result = await client.PostAsync(url, content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                string[] q = resultContent.Split('$');
+                string[] details = resultContent.Split('#');
+                currentSpent = float.Parse(details[0].Substring(1,details[0].Length-1));
+                currSpentLabel.Text = currentSpent.ToString();
+                string[] q = details[1].Split('$');
                 resultContent = "";
                 for (int i = 0; i < q.Length; i++)
                     resultContent += q[i] + System.Environment.NewLine;
@@ -142,6 +150,37 @@ namespace Comparer
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void spendingsButton_Click(object sender, EventArgs e)
+        {
+            System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["OnlineModel"].ConnectionString;
+
+            con.Open();
+            string name = "";
+            string password = "";
+            string id = "";
+            float spendings = 0;
+            SqlCommand cmd = new SqlCommand("SELECT CardID, Name, Spent, Password FROM Customers WHERE CardID = @cin", con);
+            cmd.Parameters.AddWithValue("@cin", custID);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetString(0);
+                name = reader.GetString(1);
+                spendings = reader.GetFloat(2);
+                password = reader.GetString(3);
+            }
+            reader.Close();
+            cmd = new SqlCommand("UPDATE Customers SET Spent = @spn WHERE CardId = @cid", con);
+            cmd.Parameters.AddWithValue("@cid", id);
+            cmd.Parameters.AddWithValue("@spn", spendings + currentSpent);
+            moneySaved.Text = cmd.ExecuteNonQuery().ToString();
+            con.Close();
+            spentLabel.Text = (spendings + currentSpent).ToString();
+            currentSpent = 0;
+            currSpentLabel.Text = currentSpent.ToString();
         }
     }
 }

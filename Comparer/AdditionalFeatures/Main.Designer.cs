@@ -45,6 +45,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.spentLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.spendingsButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.currSpentLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,7 +195,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 411);
+            this.label3.Location = new System.Drawing.Point(7, 417);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 20;
@@ -217,11 +221,55 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Eur";
             // 
+            // spendingsButton
+            // 
+            this.spendingsButton.Location = new System.Drawing.Point(7, 486);
+            this.spendingsButton.Name = "spendingsButton";
+            this.spendingsButton.Size = new System.Drawing.Size(119, 35);
+            this.spendingsButton.TabIndex = 23;
+            this.spendingsButton.Text = "Update Spendings";
+            this.spendingsButton.UseVisualStyleBackColor = true;
+            this.spendingsButton.Click += new System.EventHandler(this.spendingsButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(81, 375);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 25);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Eur";
+            // 
+            // currSpentLabel
+            // 
+            this.currSpentLabel.AutoSize = true;
+            this.currSpentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currSpentLabel.Location = new System.Drawing.Point(7, 375);
+            this.currSpentLabel.Name = "currSpentLabel";
+            this.currSpentLabel.Size = new System.Drawing.Size(24, 25);
+            this.currSpentLabel.TabIndex = 25;
+            this.currSpentLabel.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(7, 348);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Current money spent:";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.currSpentLabel);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.spendingsButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.spentLabel);
             this.Controls.Add(this.label3);
@@ -268,5 +316,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label spentLabel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button spendingsButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label currSpentLabel;
+        private System.Windows.Forms.Label label7;
     }
 }

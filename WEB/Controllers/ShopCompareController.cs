@@ -39,11 +39,16 @@ namespace WEB.Controllers
             [System.Web.Http.Route("compareshops")]
             public IHttpActionResult CompareShops([FromBody] string receivedString)
             {
+                float spent = 0;
                 CompareShops x = new CompareShops(new WriteToFile());
                 List<FromFileToStruct.Product> curr = FromFileToStruct.MakeProductList(receivedString);
+                foreach(FromFileToStruct.Product abc in curr)
+                {
+                    spent += abc.price;
+                }
                 string a = x.CompareResults(curr);
                 UpdateDababase.UpdateDatabase(curr);
-                return Ok(a);
+                return Ok(spent + "#" + a);
             }
 
 

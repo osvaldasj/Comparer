@@ -3,16 +3,16 @@ namespace WEB.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addToProductShopId : DbMigration
+    public partial class shopidfix : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Products", "ShopID", c => c.String(nullable:true));
+            AlterColumn("dbo.Products", "ShopID", c => c.Int(nullable: true));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Products", "ShopID");
+            AlterColumn("dbo.Products", "ShopID", c => c.String());
         }
     }
 }

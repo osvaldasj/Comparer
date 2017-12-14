@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Comparer.AdditionalFeatures;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -12,7 +13,7 @@ namespace Comparer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new LogInScreen());
         }
 
         public static void ResultWriter(string text, string filePath)

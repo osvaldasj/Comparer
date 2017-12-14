@@ -190,6 +190,7 @@
     <Compile Include="ComparisonEngine\UpdateDababase.cs" />
     <Compile Include="Controllers\DatabaseGenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogInScreenController.cs" />
     <Compile Include="Controllers\ShopCompareController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="ComparisonEngine\CompareShops.cs" />
@@ -210,6 +211,26 @@
     <Compile Include="Migrations\201712091111431_addToProductShopId.cs" />
     <Compile Include="Migrations\201712091111431_addToProductShopId.Designer.cs">
       <DependentUpon>201712091111431_addToProductShopId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712092256406_fixedProductAndShopIDs.cs" />
+    <Compile Include="Migrations\201712092256406_fixedProductAndShopIDs.Designer.cs">
+      <DependentUpon>201712092256406_fixedProductAndShopIDs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712102243060_minorFix.cs" />
+    <Compile Include="Migrations\201712102243060_minorFix.Designer.cs">
+      <DependentUpon>201712102243060_minorFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111958371_new id for price.cs" />
+    <Compile Include="Migrations\201712111958371_new id for price.Designer.cs">
+      <DependentUpon>201712111958371_new id for price.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712132315519_shop id fix.cs" />
+    <Compile Include="Migrations\201712132315519_shop id fix.Designer.cs">
+      <DependentUpon>201712132315519_shop id fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712140138170_nullableShop.cs" />
+    <Compile Include="Migrations\201712140138170_nullableShop.Designer.cs">
+      <DependentUpon>201712140138170_nullableShop.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +292,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\DatabaseGen\" />
+    <Folder Include="Views\LogInScreen\" />
     <Folder Include="Views\ShopCompare\" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +323,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712091111431_addToProductShopId.resx">
       <DependentUpon>201712091111431_addToProductShopId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712092256406_fixedProductAndShopIDs.resx">
+      <DependentUpon>201712092256406_fixedProductAndShopIDs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102243060_minorFix.resx">
+      <DependentUpon>201712102243060_minorFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111958371_new id for price.resx">
+      <DependentUpon>201712111958371_new id for price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712132315519_shop id fix.resx">
+      <DependentUpon>201712132315519_shop id fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712140138170_nullableShop.resx">
+      <DependentUpon>201712140138170_nullableShop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

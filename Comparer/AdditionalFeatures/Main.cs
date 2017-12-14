@@ -5,16 +5,28 @@ using System.IO;
 using System.Net.Http;
 using System.Windows.Forms;
 
+using System.Collections.Specialized;
+using Comparer.AdditionalFeatures;
+using System.Configuration;
+using System.Data.SqlClient;
+
+
 namespace Comparer
 {
     public partial class Main : Form
     {
         public string inputFile;
+        //public string name { get; set; }
         bool IMG = false;
+        string custID;
+        public float currentSpent = 0;
 
-        public Main()
+        public Main(string name, string value, string ID)
         {
             InitializeComponent();
+            welcomeLabel.Text = "Welcome, " + name + "!";
+            spentLabel.Text = value;
+            custID = ID;
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -73,6 +85,7 @@ namespace Comparer
         {
             string url = @"http://192.168.0.200/WEBcmp/api/compareshops";  //mezon
             //string url = @"http://10.3.5.56//WEBcmp/api/compareshops";    //mif
+            //string url = @"http://192.168.1.153/WEBcmp/api/compareshops"; //barak
 
             using (var client = new HttpClient())
             {
@@ -83,7 +96,10 @@ namespace Comparer
                 HttpResponseMessage result = await client.PostAsync(url, content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                string[] q = resultContent.Split('$');
+                string[] details = resultContent.Split('#');
+                currentSpent = float.Parse(details[0].Substring(1,details[0].Length-1));
+                currSpentLabel.Text = currentSpent.ToString();
+                string[] q = details[1].Split('$');
                 resultContent = "";
                 for (int i = 0; i < q.Length; i++)
                     resultContent += q[i] + System.Environment.NewLine;
@@ -127,6 +143,7 @@ namespace Comparer
             }
         }
 
+
         private void Main_Load(object sender, EventArgs e)
         {
 
@@ -134,15 +151,30 @@ namespace Comparer
 
         private void btnDataReview_Click(object sender, EventArgs e)
         {
-            // Scan throught data
-
-
-
-
             // Open new window
             DataReview settingsForm = new DataReview();
 
             settingsForm.Show();
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void spendingsButton_Click(object sender, EventArgs e)
+        {
+            System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["OnlineModel"].ConnectionString;
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("UPDATE Customers SET Spent = @spn WHERE CardId = @cid", con);
+            cmd.Parameters.AddWithValue("@cid", custID);
+            cmd.Parameters.AddWithValue("@spn", float.Parse(spentLabel.Text) + currentSpent);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            spentLabel.Text = (float.Parse(spentLabel.Text) + currentSpent).ToString();
+            currentSpent = 0;
+            currSpentLabel.Text = currentSpent.ToString();
         }
     }
 }

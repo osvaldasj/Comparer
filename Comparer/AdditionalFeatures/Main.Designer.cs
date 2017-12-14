@@ -41,7 +41,18 @@
             this.moneySaved = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
             this.nonWebBtn = new System.Windows.Forms.Button();
+
             this.btnDataReview = new System.Windows.Forms.Button();
+
+            this.welcomeLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.spentLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.spendingsButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.currSpentLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,6 +198,7 @@
             this.nonWebBtn.UseVisualStyleBackColor = true;
             this.nonWebBtn.Click += new System.EventHandler(this.nonWebBtn_Click);
             // 
+
             // btnDataReview
             // 
             this.btnDataReview.Location = new System.Drawing.Point(30, 331);
@@ -197,13 +209,106 @@
             this.btnDataReview.Text = "Data Review";
             this.btnDataReview.UseVisualStyleBackColor = true;
             this.btnDataReview.Click += new System.EventHandler(this.btnDataReview_Click);
+
+            // welcomeLabel
+            // 
+            this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeLabel.Location = new System.Drawing.Point(537, 12);
+            this.welcomeLabel.Name = "welcomeLabel";
+            this.welcomeLabel.Size = new System.Drawing.Size(109, 25);
+            this.welcomeLabel.TabIndex = 19;
+            this.welcomeLabel.Text = "Welcome!";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(7, 417);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Total money spent:";
+            // 
+            // spentLabel
+            // 
+            this.spentLabel.AutoSize = true;
+            this.spentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spentLabel.Location = new System.Drawing.Point(7, 444);
+            this.spentLabel.Name = "spentLabel";
+            this.spentLabel.Size = new System.Drawing.Size(24, 25);
+            this.spentLabel.TabIndex = 21;
+            this.spentLabel.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(81, 444);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 25);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Eur";
+            // 
+            // spendingsButton
+            // 
+            this.spendingsButton.Location = new System.Drawing.Point(7, 486);
+            this.spendingsButton.Name = "spendingsButton";
+            this.spendingsButton.Size = new System.Drawing.Size(119, 35);
+            this.spendingsButton.TabIndex = 23;
+            this.spendingsButton.Text = "Update Spendings";
+            this.spendingsButton.UseVisualStyleBackColor = true;
+            this.spendingsButton.Click += new System.EventHandler(this.spendingsButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(81, 375);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 25);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Eur";
+            // 
+            // currSpentLabel
+            // 
+            this.currSpentLabel.AutoSize = true;
+            this.currSpentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currSpentLabel.Location = new System.Drawing.Point(7, 375);
+            this.currSpentLabel.Name = "currSpentLabel";
+            this.currSpentLabel.Size = new System.Drawing.Size(24, 25);
+            this.currSpentLabel.TabIndex = 25;
+            this.currSpentLabel.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(7, 348);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Current money spent:";
+
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(3632, 1660);
             this.Controls.Add(this.btnDataReview);
+
+            this.ClientSize = new System.Drawing.Size(1362, 696);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.currSpentLabel);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.spendingsButton);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.spentLabel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.welcomeLabel);
+
             this.Controls.Add(this.nonWebBtn);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.moneySaved);
@@ -221,7 +326,11 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+
             this.Load += new System.EventHandler(this.Main_Load);
+
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
+
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -243,6 +352,17 @@
         private System.Windows.Forms.Label moneySaved;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button nonWebBtn;
+
         private System.Windows.Forms.Button btnDataReview;
+
+        private System.Windows.Forms.Label welcomeLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label spentLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button spendingsButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label currSpentLabel;
+        private System.Windows.Forms.Label label7;
+
     }
 }

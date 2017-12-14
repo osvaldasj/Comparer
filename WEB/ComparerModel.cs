@@ -11,16 +11,17 @@ namespace WEB
             : base("name=OnlineModel")
         {
         }
-        public DbSet<Price> Price { get; set; }
+        public DbSet<Price> Prices { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Shop> Shop { get; set; }
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Shop> Shops { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
     public class Price
     {
         [Key]
-        public string ProductID { get; set; }
-        public string ShopID { get; set; }
+        public int ID { get; set; }
+        public int ProductID { get; set; }
+        public int ShopID { get; set; }
         public DateTime DateT { get; set; }
         public float PriceD { get; set; }
 
@@ -32,7 +33,7 @@ namespace WEB
         public string Name { get; set; }
         public float Price { get; set; }
         public string Shop { get; set; }
-        public string ShopID { get; set; }
+        public int ShopID { get; set; }
         public DateTime Date { get; set; }
         public bool Accept { get; set; }
     }

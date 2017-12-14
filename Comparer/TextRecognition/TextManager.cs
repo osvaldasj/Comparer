@@ -1,8 +1,6 @@
 ﻿using Comparer.TextRecognition;
 using System;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Comparer
@@ -41,7 +39,8 @@ namespace Comparer
         private string GetProducts(string text)
         {
             string result = "";
-            var regex = new Regex(@"((([a-z]){2,}[ ]?)+\n+\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))|(\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))");
+            // works for older checks: ((([a-z]){2,}[ ]?)+\n+\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))|(\w.*\s\d{1,3}[ ]?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))
+            var regex = new Regex(@"((.*\s\d{1,3}[ ]?)([\n]?.*\s\d{1,3}[ ]?)?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))");
             var matches = regex.Matches(text);
 
             foreach (var match in matches)
@@ -67,7 +66,7 @@ namespace Comparer
                 return "unable to detect products";
             }
         }
-                              
+
         // Extract date from string
         private string GetDate(string text)
         {

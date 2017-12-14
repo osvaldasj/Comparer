@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Collections.Specialized;
-using Comparer.AdditionalFeatures;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Net.Http;
+using System.Windows.Forms;
 
 namespace Comparer
 {
@@ -101,13 +93,13 @@ namespace Comparer
                 string resultContent = await result.Content.ReadAsStringAsync();
 
                 string[] details = resultContent.Split('#');
-                currentSpent = float.Parse(details[0].Substring(1,details[0].Length-1));
+                currentSpent = float.Parse(details[0].Substring(1, details[0].Length - 1));
                 currSpentLabel.Text = currentSpent.ToString();
                 string[] q = details[1].Split('$');
                 resultContent = "";
                 for (int i = 0; i < q.Length; i++)
                     resultContent += q[i] + System.Environment.NewLine;
-                    
+
                 moneySaved.Text = resultContent;
             }
 
@@ -139,7 +131,7 @@ namespace Comparer
         {
             using (var db = new ComparerModel())
             {
-                var productA = new Product() { Id = 1, Name = "pienas", Price = 1.02f , Date = DateTime.Now, Accept = false};
+                var productA = new Product() { Id = 1, Name = "pienas", Price = 1.02f, Date = DateTime.Now, Accept = false };
                 var productB = new Product() { Id = 2, Name = "suris", Price = 2.54f, Date = DateTime.Now, Accept = false };
                 db.Products.Add(productA);
                 db.Products.Add(productB);
@@ -167,35 +159,43 @@ namespace Comparer
             currentSpent = 0;
             currSpentLabel.Text = currentSpent.ToString();
         }
+
+        private void btnReviewData_Click(object sender, EventArgs e)
+        {
+            // Open new window
+            DataReview settingsForm = new DataReview();
+
+            settingsForm.Show();
+        }
     }
 }
 
 
-        /*private async Task btnTest_ClickAsync(object sender, EventArgs e)
+/*private async Task btnTest_ClickAsync(object sender, EventArgs e)
+{
+
+    moneySaved.Text = "started Task?";
+
+    Lazy<LazyInicialization> lazyTest = new Lazy<LazyInicialization>();
+    LazyInicialization x = lazyTest.Value;
+    MessageBox.Show(x.ToString());
+
+    string url = @"http://192.168.0.200/TestComparer/api/mytest/computemulti";
+
+    using (var client = new HttpClient())
+    {
+
+        var content = new FormUrlEncodedContent(new[]
         {
-
-            moneySaved.Text = "started Task?";
-
-            Lazy<LazyInicialization> lazyTest = new Lazy<LazyInicialization>();
-            LazyInicialization x = lazyTest.Value;
-            MessageBox.Show(x.ToString());
-
-            string url = @"http://192.168.0.200/TestComparer/api/mytest/computemulti";
-
-            using (var client = new HttpClient())
-            {
-
-                var content = new FormUrlEncodedContent(new[]
-                {
-                new KeyValuePair<string, string>("", "String to Pass")
-            });
-                var result = await client.PostAsync(url, content);
-                string resultContent = await result.Content.ReadAsStringAsync();
-                moneySaved.Text = resultContent;
-            }
-            
+        new KeyValuePair<string, string>("", "String to Pass")
+    });
+        var result = await client.PostAsync(url, content);
+        string resultContent = await result.Content.ReadAsStringAsync();
+        moneySaved.Text = resultContent;
+    }
 
 
-            //moneySaved.Text = responseString;
 
-        }*/
+    //moneySaved.Text = responseString;
+
+}*/

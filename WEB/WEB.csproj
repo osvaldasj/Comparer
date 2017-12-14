@@ -189,6 +189,7 @@
     <Compile Include="ComparisonEngine\AddToDatabase.cs" />
     <Compile Include="ComparisonEngine\UpdateDababase.cs" />
     <Compile Include="Controllers\DatabaseGenController.cs" />
+    <Compile Include="Controllers\DataReviewManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogInScreenController.cs" />
     <Compile Include="Controllers\ShopCompareController.cs" />
@@ -293,6 +294,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\DatabaseGen\" />
+    <Folder Include="Views\DataReviewManager\" />
     <Folder Include="Views\LogInScreen\" />
     <Folder Include="Views\ShopCompare\" />
   </ItemGroup>

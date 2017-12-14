@@ -79,8 +79,8 @@ namespace Comparer
 
         private async void compareButton_Click(object sender, EventArgs e)
         {
-            string url = @"http://192.168.0.200/WEBcmp/api/compareshops";  //mezon
-            //string url = @"http://10.3.5.56//WEBcmp/api/compareshops";    //mif
+            //string url = @"http://192.168.0.200/WEBcmp/api/compareshops";  //mezon
+            string url = @"http://10.3.5.56//WEBcmp/api/compareshops";    //mif
             //string url = @"http://192.168.1.153/WEBcmp/api/compareshops"; //barak
 
             using (var client = new HttpClient())

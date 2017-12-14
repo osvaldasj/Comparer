@@ -20,8 +20,8 @@ namespace Comparer.AdditionalFeatures
         private static readonly HttpClient client = new HttpClient();
         private async void LoginButton_ClickAsync(object sender, EventArgs e)
         {
-            string url = @"http://192.168.0.200/WEBcmp/login/login"; // mezon
-            //string url = @"http://10.3.5.56//WEBcmp/login/login";    //mif
+            //string url = @"http://192.168.0.200/WEBcmp/login/login"; // mezon
+            string url = @"http://10.3.5.56//WEBcmp/login/login";    //mif
             //string url = @"http://192.168.1.153/WEBcmp/login/login"; //barak
 
 

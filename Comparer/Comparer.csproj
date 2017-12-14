@@ -170,6 +170,9 @@
     <Compile Include="TextRecognition\TextManagementTools.cs" />
     <Compile Include="TextRecognition\TextManager.cs" />
     <Compile Include="DatabaseEngine\UpdateDatabase.cs" />
+    <EmbeddedResource Include="AdditionalFeatures\DataReview.resx">
+      <DependentUpon>DataReview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdditionalFeatures\LogInScreen.resx">
       <DependentUpon>LogInScreen.cs</DependentUpon>
     </EmbeddedResource>

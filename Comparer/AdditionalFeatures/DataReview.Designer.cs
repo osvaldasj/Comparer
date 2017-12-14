@@ -28,26 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.productListResponseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productListResponseBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewAllProducts = new System.Windows.Forms.DataGridView();
             this.LoadAllProductsData = new System.Windows.Forms.Button();
             this.textBoxRecentPricesChanges = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.productListResponseBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productListResponseBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllProducts)).BeginInit();
             this.SuspendLayout();
-            // 
-            // productListResponseBindingSource
-            // 
-            this.productListResponseBindingSource.DataSource = typeof(Comparer.CompWebService.ProductListResponse);
-            // 
-            // productListResponseBindingSource1
-            // 
-            this.productListResponseBindingSource1.DataSource = typeof(Comparer.CompWebService.ProductListResponse);
             // 
             // dataGridViewAllProducts
             // 
@@ -77,12 +63,6 @@
             this.textBoxRecentPricesChanges.Size = new System.Drawing.Size(304, 379);
             this.textBoxRecentPricesChanges.TabIndex = 2;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -104,8 +84,6 @@
             this.Name = "DataReview";
             this.Text = "Data Review";
             this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.productListResponseBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productListResponseBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -113,13 +91,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.BindingSource productListResponseBindingSource;
-        private System.Windows.Forms.BindingSource productListResponseBindingSource1;
         private System.Windows.Forms.DataGridView dataGridViewAllProducts;
         private System.Windows.Forms.Button LoadAllProductsData;
         private System.Windows.Forms.TextBox textBoxRecentPricesChanges;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label1;
     }
 }

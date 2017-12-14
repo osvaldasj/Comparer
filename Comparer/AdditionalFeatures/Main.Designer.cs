@@ -175,10 +175,10 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(8, 594);
+            this.btnTest.Location = new System.Drawing.Point(30, 594);
             this.btnTest.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(312, 79);
+            this.btnTest.Size = new System.Drawing.Size(290, 79);
             this.btnTest.TabIndex = 17;
             this.btnTest.Text = "Test Button";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -186,10 +186,10 @@
             // 
             // nonWebBtn
             // 
-            this.nonWebBtn.Location = new System.Drawing.Point(8, 687);
+            this.nonWebBtn.Location = new System.Drawing.Point(32, 687);
             this.nonWebBtn.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.nonWebBtn.Name = "nonWebBtn";
-            this.nonWebBtn.Size = new System.Drawing.Size(317, 83);
+            this.nonWebBtn.Size = new System.Drawing.Size(288, 83);
             this.nonWebBtn.TabIndex = 18;
             this.nonWebBtn.Text = "no web";
             this.nonWebBtn.UseVisualStyleBackColor = true;

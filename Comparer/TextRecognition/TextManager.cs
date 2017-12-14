@@ -43,9 +43,23 @@ namespace Comparer
             var regex = new Regex(@"((.*\s\d{1,3}[ ]?)([\n]?.*\s\d{1,3}[ ]?)?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))");
             var matches = regex.Matches(text);
 
+            var regex2 = new Regex(@"((.*\s\d{1,3}[ ]?)([\n].*\s\d{1,3}[ ]?)?(\d{1,2})?[ ]?(\d)?[ ]?[,][ ]?(\d{1,2})?[ ]?(\d)?(a|c))");
+            var regex3 = new Regex(Regex.Escape("\n"));
+
             foreach (var match in matches)
             {
-                result = result + match + "\n";
+                if (regex2.IsMatch(match.ToString()))
+                {
+
+                    var temp = regex3.Replace(match.ToString(), " ", 1);
+
+                    result = result + temp + "\n";
+                }
+                else
+                {
+                    result = result + match + "\n";
+                }
+
             }
 
             result = result.Replace(" a\n", "\n");

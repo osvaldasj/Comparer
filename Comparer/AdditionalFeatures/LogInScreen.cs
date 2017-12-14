@@ -33,15 +33,15 @@ namespace Comparer.AdditionalFeatures
                 });
             HttpResponseMessage result = await client.PostAsync(url, content);
             string resultContent = await result.Content.ReadAsStringAsync();
-            if(resultContent.Substring(13,7) == "success")
+            if(resultContent.Substring(1,7) == "failure")
             {
-                this.Hide();
-                Main m = new Main(usernameBox.Text, resultContent.Substring(20, resultContent.Length-21), resultContent.Substring(1,12));
-                m.ShowDialog();
+                testLabel.Text = "Wrong username or password!";
             }
             else
             {
-                testLabel.Text = "Wrong username or password!";
+                this.Hide();
+                Main m = new Main(usernameBox.Text, resultContent.Substring(20, resultContent.Length - 21), resultContent.Substring(1, 12));
+                m.ShowDialog();
             }
         }
 

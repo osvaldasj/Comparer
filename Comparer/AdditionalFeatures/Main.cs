@@ -158,27 +158,12 @@ namespace Comparer
             con.ConnectionString = ConfigurationManager.ConnectionStrings["OnlineModel"].ConnectionString;
 
             con.Open();
-            string name = "";
-            string password = "";
-            string id = "";
-            float spendings = 0;
-            SqlCommand cmd = new SqlCommand("SELECT CardID, Name, Spent, Password FROM Customers WHERE CardID = @cin", con);
-            cmd.Parameters.AddWithValue("@cin", custID);
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                id = reader.GetString(0);
-                name = reader.GetString(1);
-                spendings = reader.GetFloat(2);
-                password = reader.GetString(3);
-            }
-            reader.Close();
-            cmd = new SqlCommand("UPDATE Customers SET Spent = @spn WHERE CardId = @cid", con);
-            cmd.Parameters.AddWithValue("@cid", id);
-            cmd.Parameters.AddWithValue("@spn", spendings + currentSpent);
-            moneySaved.Text = cmd.ExecuteNonQuery().ToString();
+            SqlCommand cmd = new SqlCommand("UPDATE Customers SET Spent = @spn WHERE CardId = @cid", con);
+            cmd.Parameters.AddWithValue("@cid", custID);
+            cmd.Parameters.AddWithValue("@spn", float.Parse(spentLabel.Text) + currentSpent);
+            cmd.ExecuteNonQuery();
             con.Close();
-            spentLabel.Text = (spendings + currentSpent).ToString();
+            spentLabel.Text = (float.Parse(spentLabel.Text) + currentSpent).ToString();
             currentSpent = 0;
             currSpentLabel.Text = currentSpent.ToString();
         }
